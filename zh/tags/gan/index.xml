@@ -1,26 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-	<channel>
-		<title>GAN on Demin Yu</title>
-		<link>http://localhost:50082/zh/tags/gan/</link>
-		<description>Recent content in GAN on Demin Yu</description>
-		<generator>Hugo</generator>
-		<language>zh-CN</language>
-		
-		
-		
-			<copyright>© Demin Yu</copyright>
-		
-		
-			<lastBuildDate>Sun, 29 Aug 2021 09:08:35 +0800</lastBuildDate>
-		
-			<atom:link href="http://localhost:50082/zh/tags/gan/index.xml" rel="self" type="application/rss+xml" />
-			<item>
-				<title>【渔樵耕读】生成对抗网络 GAN</title>
-				<link>http://localhost:50082/zh/posts/gan-notes/</link>
-				<pubDate>Sun, 29 Aug 2021 09:08:35 +0800</pubDate>
-				<guid>http://localhost:50082/zh/posts/gan-notes/</guid>
-				<description>&lt;h3 id=&#34;generator-生成式模型&#34;&gt;generator 生成式模型&lt;/h3&gt;&#xA;&lt;h4 id=&#34;生成式模型基本结构&#34;&gt;生成式模型基本结构&lt;/h4&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;与传统的输入 x 输出 y 的判别式模型对比，生成式模型还会有一个随机生成的 z 作为输入，这个 z 从某种分布中随机生成，network 同时根据 x 与 z 生成 y&lt;/li&gt;&#xA;&lt;li&gt;&lt;img src=&#34;http://localhost:50082/posts/gan-notes/images/image-20210828085135671.png&#34; alt=&#34;&#34;&gt;&lt;/li&gt;&#xA;&lt;li&gt;每一次 输入 x，都会生成一次 z，这个 z 的分布必须够简单，即需要知道 z 的表达式。例如 z 属于高斯分布、平均分布等&lt;/li&gt;&#xA;&lt;li&gt;这样同样的x，输出的 y 也不相同，y 也需要属于某种分布&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 id=&#34;为何需要生成式模型&#34;&gt;为何需要生成式模型&lt;/h4&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;对于视频预测问题，训练集是从视频中提取的某些帧，模型输出入下一帧的画面。&lt;/p&gt;</description>
-			</item>
-	</channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GAN on Demin Yu</title><link>https://deminyu98.github.io/zh/tags/gan/</link><description>Recent content in GAN on Demin Yu</description><generator>Hugo</generator><language>zh-CN</language><copyright>© Demin Yu</copyright><lastBuildDate>Sun, 29 Aug 2021 09:08:35 +0800</lastBuildDate><atom:link href="https://deminyu98.github.io/zh/tags/gan/index.xml" rel="self" type="application/rss+xml"/><item><title>【渔樵耕读】生成对抗网络 GAN</title><link>https://deminyu98.github.io/zh/posts/gan-notes/</link><pubDate>Sun, 29 Aug 2021 09:08:35 +0800</pubDate><guid>https://deminyu98.github.io/zh/posts/gan-notes/</guid><description>&lt;h3 id="generator-生成式模型"&gt;generator 生成式模型&lt;/h3&gt;
+&lt;h4 id="生成式模型基本结构"&gt;生成式模型基本结构&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;与传统的输入 x 输出 y 的判别式模型对比，生成式模型还会有一个随机生成的 z 作为输入，这个 z 从某种分布中随机生成，network 同时根据 x 与 z 生成 y&lt;/li&gt;
+&lt;li&gt;&lt;img src="https://deminyu98.github.io/posts/gan-notes/images/image-20210828085135671.png" alt=""&gt;&lt;/li&gt;
+&lt;li&gt;每一次 输入 x，都会生成一次 z，这个 z 的分布必须够简单，即需要知道 z 的表达式。例如 z 属于高斯分布、平均分布等&lt;/li&gt;
+&lt;li&gt;这样同样的x，输出的 y 也不相同，y 也需要属于某种分布&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="为何需要生成式模型"&gt;为何需要生成式模型&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;对于视频预测问题，训练集是从视频中提取的某些帧，模型输出入下一帧的画面。&lt;/p&gt;</description></item></channel></rss>

@@ -1,395 +1,47 @@
-<!doctype html>
-<html lang="zh-CN">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=50082&amp;path=livereload" data-no-instant defer></script>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>【渔樵耕读】概率论基础 | Demin Yu</title>
-  <meta name="description" content="Demin Yu&#39;s academic homepage and posts.">
-  <link rel="canonical" href="http://localhost:50082/zh/posts/probability/">
-  
-  
-  <link rel="alternate" hreflang="en" href="http://localhost:50082/posts/probability/">
-  
-  
-  
-  <link rel="alternate" hreflang="zh" href="http://localhost:50082/zh/posts/probability/">
-  
-  
-  <link rel="icon" href="/images/profile-small.jpg">
-  <link rel="stylesheet" href="/css/style.css?v=20260614-blogs">
-</head>
-
-  <body>
-    <div class="page-shell">
-      <header class="site-header">
-  <a class="site-title" href="/">Home</a>
-  <nav class="site-nav" aria-label="Main navigation">
-    <a href="/zh/posts/">Blogs</a>
-  </nav>
-</header>
-
-      <main id="content">
-        
-
-
-
-<article class="single-post">
-  <div id="toptitle" class="titlebar">
-    <h1>【渔樵耕读】概率论基础</h1>
-    
-    
-
-<div class="language-switch" aria-label="Language switcher">
-  
-  
-  
-  <a class="" href="/posts/probability/" title="English">
-    EN
-  </a>
-  
-  
-  
-  
-  <a class="active" href="/zh/posts/probability/" title="中文" aria-current="page">
-    中
-  </a>
-  
-  
-</div>
-
-
-    
-  </div>
-  <p class="post-meta">
-    发布于 2021-08-29
-    
-  </p>
-  
-  <div class="post-content">
-    <p>概率论与数理统计的对比：</p>
-<p>概率论:</p>
-<ul>
-<li>概率论将<strong>随机变量</strong>及其概率分布、数字特征及特征函数，作为数学工具对随机现象进行描述分析。其前提条件是 「假设随机变量的概率分布已知」</li>
-<li>概率论研究问题的方法是从假设、命题、已知的随机现象的事实触发，按逻辑推理得到结论，是「演绎式」</li>
-</ul>
-<p>数理统计</p>
-<ul>
-<li>
-<p>数理统计中，「随机变量的概率分布未知，或分布类型已知，参数未知」</p>
-</li>
-<li>
-<p>统计学方法是从研究对象的全体中随机抽取一部分进行实验或观测，获得实验数据，对整体做出推断，是「归纳式」</p>
-</li>
-</ul>
-<h2 id="概率论">概率论</h2>
-<h3 id="一随机现象">一、随机现象</h3>
-<ul>
-<li>
-<p>随机试验是满足如下条件的实验：</p>
-<ol>
-<li>实验可在相同条件下重复进行</li>
-<li>实验所有可能结果不止一个，但实验前可知</li>
-<li>每次实验结果可能是某一种结果，但具体不可知</li>
-</ol>
-</li>
-<li>
-<p>随机变量（随机事件）就是随机试验中可能出现的实验结果，具有随机性</p>
-<ul>
-<li>随机变量可以描述为对随机事件的数值化拓展，对于随机变量的分布函数可以引入微积分工具进行研究</li>
-</ul>
-</li>
-<li>
-<p>随机变量的具体定义</p>
-<ul>
-<li>设 E是随机试验，样本空间（样本结果的所有可能取值）是 S，对 S 中的每个基本事件 e，有唯一实数值 X(e)与之对应，则 X(e)为随机变量</li>
-<li>随机变量包括离散型随机变量和连续型随机变量</li>
-</ul>
-</li>
-<li>
-<p>在随机实验中，通常有些实验结果出现的可能性大，这种可能性是客观存在的，被称为随机事件的概率$P(A)$</p>
-</li>
-<li>
-<p>☆随机变量的分布被描述为变量空间 S 中每个事件 e 发生的概率，这些所有事件的概率描述了该随机事件的分布情况。</p>
-<ul>
-<li>
-<p>当某种随机现象，我们已知其符合某种分布时，就可以直接计算其随机变量发生的概率，而无需再进行统计分析。**例如已知到店顾客数满足泊松分布，班级成绩满足正态分布……这种分布是先验的，直接获知。**当然，已知满足某种分布，该分布下可能存在分布函数参数未知的情况，这就需要统计分析估计其参数。</p>
-</li>
-<li>
-<p>离散型随机变量可以通过分布列直接描述某个具体事件 e 的概率$P(X=e)$</p>
-</li>
-<li>
-<p>连续型随机变量相关概念：</p>
-<ul>
-<li>连续型随机变量对于具体某个值的概率无意义，我们通常需要的是其在某个区间范围内的发生的概率。例如，灯泡寿命 1.5 年的概率和寿命 1.52 年的概率，无法体现具体信息，通常计算寿命在 1.5-2 年的概率是多少。</li>
-<li>对于区间的求解用到分布函数。$P(x_1≤X≤x_2)=P(X≤x_1)-P(X≤x_1)$。为方便这里称$F(x)=P(X≤x)$为x的分布函数。对于分布函数就可以理解为普通函数，可以使用微积分处理</li>
-<li>☆ 对于分布函数的导数$f(x)=F'(x)$表示随机变量 x 的概率密度。事实上，单从连续型事件 X=x发生的概率来看，其概率密度函数f(X=x)与其发生的概率没有关系，事实上，对于任意连续型随机变量，$P(X=x)=0$，也就理解为连续型随机变量取单独值没有意义。</li>
-<li>结合连续型随机变量的图像，虽然其纵坐标为概率密度 f，但图像中实际是以某区间的面积代表了发生的概率，与具体的 f(x)的概率密度值无关</li>
-</ul>
-</li>
-<li>
-<p>正态分布：
-</p>
-$$
-    f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{\frac{(x-\mu)^2}{2\sigma^2}}
-    $$$$
-    F(x)=\frac{1}{\sigma\sqrt{2\pi}}\int_{-\infty}^xe^{\frac{(x-\mu)^2}{2\sigma^2}}dt.
-    $$</li>
-</ul>
-</li>
-</ul>
-<h3 id="二条件概率与独立性">二、条件概率与独立性</h3>
-<blockquote>
-<p>描述随机事件之间的关系</p>
-</blockquote>
-<ol>
-<li>条件概率</li>
-</ol>
-<p>条件概率$P(A|B)$: 在随机事件 B 发生的条件下，随机事件 A 发生的概率。严格来讲，大部分随机事件的发生都是有条件的。
-</p>
-$$
+<!doctype html><html lang=zh-CN><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>【渔樵耕读】概率论基础 | Demin Yu</title><meta name=description content="Demin Yu's academic homepage and posts."><link rel=canonical href=https://deminyu98.github.io/zh/posts/probability/><link rel=alternate hreflang=en href=https://deminyu98.github.io/posts/probability/><link rel=alternate hreflang=zh href=https://deminyu98.github.io/zh/posts/probability/><link rel=icon href=/images/profile-small.jpg><link rel=stylesheet href="/css/style.css?v=20260614-blogs"></head><body><div class=page-shell><header class=site-header><a class=site-title href=/>Home</a><nav class=site-nav aria-label="Main navigation"><a href=/zh/posts/>Blogs</a></nav></header><main id=content><article class=single-post><div id=toptitle class=titlebar><h1>【渔樵耕读】概率论基础</h1><div class=language-switch aria-label="Language switcher"><a href=/posts/probability/ title=English>EN
+</a><a class=active href=/zh/posts/probability/ title=中文 aria-current=page>中</a></div></div><p class=post-meta>发布于 2021-08-29</p><div class=post-content><p>概率论与数理统计的对比：</p><p>概率论:</p><ul><li>概率论将<strong>随机变量</strong>及其概率分布、数字特征及特征函数，作为数学工具对随机现象进行描述分析。其前提条件是 「假设随机变量的概率分布已知」</li><li>概率论研究问题的方法是从假设、命题、已知的随机现象的事实触发，按逻辑推理得到结论，是「演绎式」</li></ul><p>数理统计</p><ul><li><p>数理统计中，「随机变量的概率分布未知，或分布类型已知，参数未知」</p></li><li><p>统计学方法是从研究对象的全体中随机抽取一部分进行实验或观测，获得实验数据，对整体做出推断，是「归纳式」</p></li></ul><h2 id=概率论>概率论</h2><h3 id=一随机现象>一、随机现象</h3><ul><li><p>随机试验是满足如下条件的实验：</p><ol><li>实验可在相同条件下重复进行</li><li>实验所有可能结果不止一个，但实验前可知</li><li>每次实验结果可能是某一种结果，但具体不可知</li></ol></li><li><p>随机变量（随机事件）就是随机试验中可能出现的实验结果，具有随机性</p><ul><li>随机变量可以描述为对随机事件的数值化拓展，对于随机变量的分布函数可以引入微积分工具进行研究</li></ul></li><li><p>随机变量的具体定义</p><ul><li>设 E是随机试验，样本空间（样本结果的所有可能取值）是 S，对 S 中的每个基本事件 e，有唯一实数值 X(e)与之对应，则 X(e)为随机变量</li><li>随机变量包括离散型随机变量和连续型随机变量</li></ul></li><li><p>在随机实验中，通常有些实验结果出现的可能性大，这种可能性是客观存在的，被称为随机事件的概率$P(A)$</p></li><li><p>☆随机变量的分布被描述为变量空间 S 中每个事件 e 发生的概率，这些所有事件的概率描述了该随机事件的分布情况。</p><ul><li><p>当某种随机现象，我们已知其符合某种分布时，就可以直接计算其随机变量发生的概率，而无需再进行统计分析。**例如已知到店顾客数满足泊松分布，班级成绩满足正态分布……这种分布是先验的，直接获知。**当然，已知满足某种分布，该分布下可能存在分布函数参数未知的情况，这就需要统计分析估计其参数。</p></li><li><p>离散型随机变量可以通过分布列直接描述某个具体事件 e 的概率$P(X=e)$</p></li><li><p>连续型随机变量相关概念：</p><ul><li>连续型随机变量对于具体某个值的概率无意义，我们通常需要的是其在某个区间范围内的发生的概率。例如，灯泡寿命 1.5 年的概率和寿命 1.52 年的概率，无法体现具体信息，通常计算寿命在 1.5-2 年的概率是多少。</li><li>对于区间的求解用到分布函数。$P(x_1≤X≤x_2)=P(X≤x_1)-P(X≤x_1)$。为方便这里称$F(x)=P(X≤x)$为x的分布函数。对于分布函数就可以理解为普通函数，可以使用微积分处理</li><li>☆ 对于分布函数的导数$f(x)=F'(x)$表示随机变量 x 的概率密度。事实上，单从连续型事件 X=x发生的概率来看，其概率密度函数f(X=x)与其发生的概率没有关系，事实上，对于任意连续型随机变量，$P(X=x)=0$，也就理解为连续型随机变量取单独值没有意义。</li><li>结合连续型随机变量的图像，虽然其纵坐标为概率密度 f，但图像中实际是以某区间的面积代表了发生的概率，与具体的 f(x)的概率密度值无关</li></ul></li><li><p>正态分布：</p>$$
+f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{\frac{(x-\mu)^2}{2\sigma^2}}
+$$$$
+F(x)=\frac{1}{\sigma\sqrt{2\pi}}\int_{-\infty}^xe^{\frac{(x-\mu)^2}{2\sigma^2}}dt.
+$$</li></ul></li></ul><h3 id=二条件概率与独立性>二、条件概率与独立性</h3><blockquote><p>描述随机事件之间的关系</p></blockquote><ol><li>条件概率</li></ol><p>条件概率$P(A|B)$: 在随机事件 B 发生的条件下，随机事件 A 发生的概率。严格来讲，大部分随机事件的发生都是有条件的。</p>$$
 P(A|B)=\frac{P(AB)}{P(B)}
-$$<p>
-$P(AB)$ 表示 随件事件 A 与 B 同时发生的概率。进而可推导出$P(AB) = P(A|B)P(B)$ (乘法定理)</p>
-<ol start="2">
-<li>全概率公式：</li>
-</ol>
-<p>对于随件事件 A与B，$A \sub B$ 代表事件 A 的发生必然导致事件 B 的发生，即 A 是 B 的子集。</p>
-<p>那么倘若$B \sub A_1+A_2+…+A_n$ ,其中「$A_1,…,A_n $互不相容，不同时发生，也即互斥」，代表事件 B 发生必然导致$A_1,…,A_n$中的某个事件发生，那么
-</p>
-$$
+$$<p>$P(AB)$ 表示 随件事件 A 与 B 同时发生的概率。进而可推导出$P(AB) = P(A|B)P(B)$ (乘法定理)</p><ol start=2><li>全概率公式：</li></ol><p>对于随件事件 A与B，$A \sub B$ 代表事件 A 的发生必然导致事件 B 的发生，即 A 是 B 的子集。</p><p>那么倘若$B \sub A_1+A_2+…+A_n$ ,其中「$A_1,…,A_n $互不相容，不同时发生，也即互斥」，代表事件 B 发生必然导致$A_1,…,A_n$中的某个事件发生，那么</p>$$
 P(B)=\sum_{i=1}^n P(A_i)P(B|A_i)
-$$<p>
-该公式即为全概率公式，主要用于通过简单的时间概率去求解未知的较复杂的事件概率。</p>
-<p>注意，全概率公式通常使用的场景是随机事件$B,A_i$可以分为两大类事件，而且需要满足条件:</p>
-<ul>
-<li>$\cup A_i$能够包括所有事件发生的情况，「但不一定是事件全集」</li>
-<li>$A_i$必须是互斥的</li>
-<li>事件$B,A_i$可以分为「两大类」事件，如B:商品是次品，$A_i$商品产自第 i 个工厂。</li>
-<li>而且事件 B 必须包含在$UA_i$中</li>
-</ul>
-<p>通常情况下，$A_i$互斥，直接将$\cup  A_i$视为全集了，即对于 A 类事件所有可能发生的情况$A_i$，不然也没啥意义。</p>
-<ol start="3">
-<li><strong>贝叶斯公式</strong></li>
-</ol>
-<p>先上公式。同全概率公式条件，$A_1,…,A_n$且互斥，事件 B 包含在$\cup  A_i$中，则：
-</p>
-$$
+$$<p>该公式即为全概率公式，主要用于通过简单的时间概率去求解未知的较复杂的事件概率。</p><p>注意，全概率公式通常使用的场景是随机事件$B,A_i$可以分为两大类事件，而且需要满足条件:</p><ul><li>$\cup A_i$能够包括所有事件发生的情况，「但不一定是事件全集」</li><li>$A_i$必须是互斥的</li><li>事件$B,A_i$可以分为「两大类」事件，如B:商品是次品，$A_i$商品产自第 i 个工厂。</li><li>而且事件 B 必须包含在$UA_i$中</li></ul><p>通常情况下，$A_i$互斥，直接将$\cup A_i$视为全集了，即对于 A 类事件所有可能发生的情况$A_i$，不然也没啥意义。</p><ol start=3><li><strong>贝叶斯公式</strong></li></ol><p>先上公式。同全概率公式条件，$A_1,…,A_n$且互斥，事件 B 包含在$\cup A_i$中，则：</p>$$
 P(A_i|B)=\frac{P(A_i)P(B|A_i)}{\sum_{j=1}^nP(A_j)P(B|A_j)}
-$$<p>
-Bayes 公式是非常重要的公式，由于$B \sub A_1+...+A_n$，我们可以将$A_i$看成引发 B 发生的原因，则$P(A_i|B)$要求的就是事件$A_i$引发 B 发生的的概率。</p>
-<p>公式中，</p>
-<ul>
-<li>$P(A_i)$称为先验概率，一般在随机试验之前就已知；</li>
-<li>$P(A_i|B)$ 是后验概率，也就是我们要求的概率。反应了实验之后，对各种原因发生的可能性大小。例如得知考上大学，判断是否聪明</li>
-<li>$P(B|A_i)$称为逆条件概率，公式中需要用到的似然概率?</li>
-</ul>
-<p>贝叶斯公式在机器学习分类问题中的使用（李宏毅课程中有讲）</p>
-<p>对于所有机器学习问题，都可以从两个角度考虑训练过程:</p>
-<ol>
-<li>
-<p>将模型看作一个预测函数，训练过程就是令损失函数最小化以求得相应的参数w，预测过程就是输入新样本的特征值x，输出标签值y</p>
-</li>
-<li>
-<p>将模型看作一个概率密度函数，它可以表示数据的分布，训练过程就是概率分布的参数估计过程，预测过程就是求条件概率P(y=？|x)，条件概率表示在输入特征为 x 的条件下，y =？类别的概率</p>
-<ul>
-<li>
-<p>这里我们令特征 $X = x_1,...,x_n$，预测类别$Y=y_1,y_2,y_3$。那么 Bayes 模型就是求 $P(Y=y_j|X)$的概率</p>
-</li>
-<li>
-<p>根据 Bayes 公式，
-</p>
-$$
-     P(Y=y_j|X) = \frac{P(Y=y_j,X)}{P(X)}=\frac{P(X|Y=y_j)P(Y=y_j)}{P(X)}
-     $$<p>
-那么Bayes模型训练过程，就是从训练数据中统计先验概率$P(Y=y_j)$和似然概率$P(X|Y=y_j)$</p>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="三多维随机变量">三、多维随机变量</h3>
-<ol>
-<li>
-<p>二维随机变量概念</p>
-<p>设(X,Y)为二维随机变量，记事件{X ≤ x}与事件{Y ≤ y}的『交』作为{X≤x, Y≤y}，二元函数
-</p>
-$$
-   F(x,y)=P(X≤x,Y≤y)
-   $$<p>
-称为(X,Y)的分布函数（XY 联合分布函数）</p>
-<p>这里强调下 P(XY)中，X、Y 代表**「随件事件」<strong>，XY 代表随机事件的交集，表示 X 事件和 Y 事件</strong>同时发生<strong>的概率；而P(X=x,Y=y)中，X、Y代表</strong>「随机变量」**，确切说是离散型随机变量，同样表示随机变量变量 X=x且 Y=y <strong>同时发生</strong>的概率，也代表『交』</p>
-<p>对于二维离散型随机变量$p_{ij}=P(X=x_i,Y=y_j)$称为(X,Y)的联合分布列</p>
-<p>对于二维连续型随机变量，$F(x,y)=\int_{-\infty}^x\int_{-\infty}^yf(u,v)dudv$为联合分布函数，f(x,y)为联合概率密度</p>
-<p>若要求二维随机变量(X,Y)中，某一维随机变量在某点X=x的的边缘概率，相当于对X=x 处所有 Y 的取值作累加，就构成了对 X 的边缘分布函数
-</p>
-$$
-   F_X(x)=P(X≤x)=P(X≤x,Y≤+\infty)=F(x,+\infty)
-   $$</li>
-<li>
-<p>多维随机变量的独立性</p>
-<p>设$F(x,y),F_X(x),F_Y(y)$依次为（X，Y）、X、Y 的分布函数，若对任意 x,y，$F(x,y)=F_X(x)F_Y(y)$成立，则随机变量 X、Y 独立。</p>
-<p>特别的，若X,Y 为连续型随机变量概率密度$f(x,y)=f_X(x)f_Y(y)$，同样可证明 X、Y 独立</p>
-</li>
-<li>
-<p>条件分布</p>
-<blockquote>
-<p>注意，这里是随机变量的条件分布，与上面随机事件的条件分布并非完全相同的概念，但是实际用起来基本一样的</p>
-</blockquote>
-<p>对于离散型随机变量
-</p>
-$$
-   P(X=x_i|Y=y_j)=\frac{P(X=x_i,Y=y_j)}{P(Y=y_j)}=\frac{p_{ij}}{\cdot j}
-   $$<p>
-对于连续型随机变量
-</p>
-$$
-   F_{X|Y}(x|y)=\int_{-\infty}^xf_{X|Y}(u|y)du = \int_{-\infty}^x\frac{f(u,y)}{f_Y(y)}du
-   $$</li>
-</ol>
-<h3 id="四随机变量的数字特征">四、随机变量的数字特征</h3>
-<blockquote>
-<p>随机变量的概率分布描述该随机现象的「统计规律」，这能完善的描述该变量的性质。但</p>
-</blockquote>
-<ol>
-<li>
-<p>数学期望</p>
-<p>期望描述的是随机变量产生的&quot;平均值&quot;。</p>
-<p>这里，我们是已知概率分布，求期望。但是不能将期望等同于“平均值”，因为平均值是对于数据统计来讲的，是从足够多的样例中获得。除非利用似然估计，会使数学期望=平均值</p>
-<p>若 X 可取值为{X1,X2,X3,X4}，作 N 次实验，分别产生的次数为{n1,n2,n3,n4}，则其取值的平均值我们可以表示为$\frac{\sum_{i=1}^4n_i\cdot x_i}{N}$，这里，$n_i/n$可以看做Xi 发生的概率$P(X=x_i)=\frac{n_i}{N}=p_i$，那么平均值也就表示为$\sum_{i=1}^4x_i\cdot p_i$,也即期望。</p>
-<p>这里的$\sum$就会用到级数的概念，要想期望存在，前提是级数收敛或积分存在</p>
-<p>离散型随机变量的数学期望
-</p>
-$$
-   E(X)=\sum_{i=1}^\infty x_i\cdot p_i
-   $$<p>
-连续型随机变量的数学期望
-</p>
-$$
-   E(X)=\int_{-\infty}^{+\infty}x\cdot f(x)dx
-   $$<p>
-随件变量函数的数学期望</p>
-<p>设$Z=g(X,Y),g(X,Y)$，为连续函数</p>
-<p>（X，Y）是二维离散型随机变量
-</p>
-$$
-   E(Z)=E[g(X,Y)]=\sum_{i=1}^{\infty}\sum_{j=1}^{+\infty}g(x_i,y_j)p_{ij}
-   $$<p>
-（X，Y）是二维连续型随机变量
-</p>
-$$
-   E(Z)=E(g(X,Y))=\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}g(x,y)f(x,y)dxdy
-   $$<p>☆ 数学期望的性质</p>
-<ul>
-<li>$E(CX)=CE(X)$</li>
-<li>$E(X_1+X_2)=E(X_1)+E(X_2)$</li>
-<li>若 $X_1,X_2$相互独立，则$E(X_1X_2)=E(X_1)E(X_2)$</li>
-</ul>
-</li>
-<li>
-<p>方差</p>
-<p>方差代表了 随机变量 X 离开 E(X)的偏离程度。从统计层面，方差代表了数据围绕平均值的平均波动幅度，可以评估数据的稳定性</p>
-<p>对于平均偏离程度的衡量，自然想到用偏离程度的平均值表示，而偏离程度可以使用$|X-E(X)|$表达，则可表达成 $E(|X-E(X)|$)但是该式有平均值不好计算，于是采用平方差来表示$E([X-E(X)]^2)$</p>
-<p>方差定义
-</p>
-$$
-   D(X)=E([X-E(X)^2])
-   $$<p>离散型随机变量的方差
-</p>
-$$
-   D(X)=\sum_{i=1}^\infty[x_i-E(X)]^2x_i
-   $$<p>
-连续型随机变量方差
-</p>
-$$
-   D(X)=\int_{-\infty}^{+\infty}(x-E(X))^2f(x)dx
-   $$<p>
-方差常用的计算公式
-</p>
-$$
-   D(X)=E(X^2)-[E(X)]^2
-   $$<p>☆方差性质</p>
-<ul>
-<li>$D(CX)=C^2D(X)$</li>
-<li>若 X1,X2 相互独立，$D(X_1+X_2)=D(X_1)+D(X_2)$</li>
-<li>若 X,Y 相互独立，$D(XY)=D(X)D(Y)+D(X)[E(Y)]^2+D(Y)[E(Y)]^2$</li>
-</ul>
-</li>
-<li>
-<p>协方差</p>
-<p>对于二维随机变量(X,Y)，期望、方差都是描述单个随机变量的性质，需要一个量描述两个随机变量之间的联系</p>
-<p>协方差定义
-</p>
-$$
-   Cov(X,Y)=E{[X-E(X)][Y-E(Y)]}
-   $$<p>
-协方差常用的计算公式
-</p>
-$$
-   Cov(X,Y)=E(XY)-E(X)E(Y)
-   $$<p>
-协方差的性质：</p>
-<ul>
-<li>$Cov(aX,bY)=abCov(X,Y)$</li>
-<li>$Cov(X_1+X_2,Y)=Cov(X_1,Y)+Cov(X_2,Y)$</li>
-</ul>
-<p>根据协方差，可以补充任意二维随机变量 X,Y 的方差关系。即无论 X,Y 是否独立，都有
-</p>
-$$
-   D(X+Y)=D(X)+D(Y)+2Cov(X,Y)
-   $$</li>
-<li>
-<p>相关系数</p>
-<p>用协方差来描述随机变量间的联系存在两个缺点：</p>
-<ul>
-<li>从性质1来看，相关程度依赖于计量单位（系数）</li>
-<li>从定义可知，数值不仅与 X,Y 本身取值有关，还与任意一个随机变量与其期望的偏离程度有关(X-E(X))，</li>
-</ul>
-<p>于是我们对两个随机变量的协方差归一化，用来描述两个随机变量的相关性
-</p>
-$$
-   \rho = \frac{Cov(X,Y)}{\sqrt{D(X)}\sqrt{D(Y)}}=\frac{E\{[X-E(X)][Y-E(Y)]\}}{\sqrt{D(X)}\sqrt{D(Y)}}
-   $$<p>
-相关系数的性质</p>
-<ul>
-<li>$|\rho| ≤ 1$</li>
-<li>$|\rho|=1$充要条件是$P(Y=aX+b)=1$</li>
-<li>若X,Y 相关系数$\rho=0$，则称 XY 不相关，即 XY 独立  $\iff$
-<ul>
-<li>$Cov(X,Y)=0$</li>
-<li>$D(X+Y)=D(X)+D(Y)$</li>
-<li>$E(XY)=E(X)E(Y)$</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-
-  </div>
-  <p class="back-link"><a href="/zh/posts/">返回文章列表</a></p>
-</article>
-
-
-<script>
-  window.MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-      displayMath: [['$$', '$$'], ['\\[', '\\]']],
-      processEscapes: true
-    },
-    options: {
-      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  };
-</script>
-<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-
-
-
-      </main>
-      <footer class="site-footer">
-  <span>© Demin Yu</span>
-  <span>Last updated: Jun 15, 2026</span>
-</footer>
-
-    </div>
-  </body>
-</html>
+$$<p>Bayes 公式是非常重要的公式，由于$B \sub A_1+...+A_n$，我们可以将$A_i$看成引发 B 发生的原因，则$P(A_i|B)$要求的就是事件$A_i$引发 B 发生的的概率。</p><p>公式中，</p><ul><li>$P(A_i)$称为先验概率，一般在随机试验之前就已知；</li><li>$P(A_i|B)$ 是后验概率，也就是我们要求的概率。反应了实验之后，对各种原因发生的可能性大小。例如得知考上大学，判断是否聪明</li><li>$P(B|A_i)$称为逆条件概率，公式中需要用到的似然概率?</li></ul><p>贝叶斯公式在机器学习分类问题中的使用（李宏毅课程中有讲）</p><p>对于所有机器学习问题，都可以从两个角度考虑训练过程:</p><ol><li><p>将模型看作一个预测函数，训练过程就是令损失函数最小化以求得相应的参数w，预测过程就是输入新样本的特征值x，输出标签值y</p></li><li><p>将模型看作一个概率密度函数，它可以表示数据的分布，训练过程就是概率分布的参数估计过程，预测过程就是求条件概率P(y=？|x)，条件概率表示在输入特征为 x 的条件下，y =？类别的概率</p><ul><li><p>这里我们令特征 $X = x_1,...,x_n$，预测类别$Y=y_1,y_2,y_3$。那么 Bayes 模型就是求 $P(Y=y_j|X)$的概率</p></li><li><p>根据 Bayes 公式，</p>$$
+P(Y=y_j|X) = \frac{P(Y=y_j,X)}{P(X)}=\frac{P(X|Y=y_j)P(Y=y_j)}{P(X)}
+$$<p>那么Bayes模型训练过程，就是从训练数据中统计先验概率$P(Y=y_j)$和似然概率$P(X|Y=y_j)$</p></li></ul></li></ol><h3 id=三多维随机变量>三、多维随机变量</h3><ol><li><p>二维随机变量概念</p><p>设(X,Y)为二维随机变量，记事件{X ≤ x}与事件{Y ≤ y}的『交』作为{X≤x, Y≤y}，二元函数</p>$$
+F(x,y)=P(X≤x,Y≤y)
+$$<p>称为(X,Y)的分布函数（XY 联合分布函数）</p><p>这里强调下 P(XY)中，X、Y 代表**「随件事件」<strong>，XY 代表随机事件的交集，表示 X 事件和 Y 事件</strong>同时发生<strong>的概率；而P(X=x,Y=y)中，X、Y代表</strong>「随机变量」**，确切说是离散型随机变量，同样表示随机变量变量 X=x且 Y=y <strong>同时发生</strong>的概率，也代表『交』</p><p>对于二维离散型随机变量$p_{ij}=P(X=x_i,Y=y_j)$称为(X,Y)的联合分布列</p><p>对于二维连续型随机变量，$F(x,y)=\int_{-\infty}^x\int_{-\infty}^yf(u,v)dudv$为联合分布函数，f(x,y)为联合概率密度</p><p>若要求二维随机变量(X,Y)中，某一维随机变量在某点X=x的的边缘概率，相当于对X=x 处所有 Y 的取值作累加，就构成了对 X 的边缘分布函数</p>$$
+F_X(x)=P(X≤x)=P(X≤x,Y≤+\infty)=F(x,+\infty)
+$$</li><li><p>多维随机变量的独立性</p><p>设$F(x,y),F_X(x),F_Y(y)$依次为（X，Y）、X、Y 的分布函数，若对任意 x,y，$F(x,y)=F_X(x)F_Y(y)$成立，则随机变量 X、Y 独立。</p><p>特别的，若X,Y 为连续型随机变量概率密度$f(x,y)=f_X(x)f_Y(y)$，同样可证明 X、Y 独立</p></li><li><p>条件分布</p><blockquote><p>注意，这里是随机变量的条件分布，与上面随机事件的条件分布并非完全相同的概念，但是实际用起来基本一样的</p></blockquote><p>对于离散型随机变量</p>$$
+P(X=x_i|Y=y_j)=\frac{P(X=x_i,Y=y_j)}{P(Y=y_j)}=\frac{p_{ij}}{\cdot j}
+$$<p>对于连续型随机变量</p>$$
+F_{X|Y}(x|y)=\int_{-\infty}^xf_{X|Y}(u|y)du = \int_{-\infty}^x\frac{f(u,y)}{f_Y(y)}du
+$$</li></ol><h3 id=四随机变量的数字特征>四、随机变量的数字特征</h3><blockquote><p>随机变量的概率分布描述该随机现象的「统计规律」，这能完善的描述该变量的性质。但</p></blockquote><ol><li><p>数学期望</p><p>期望描述的是随机变量产生的"平均值"。</p><p>这里，我们是已知概率分布，求期望。但是不能将期望等同于“平均值”，因为平均值是对于数据统计来讲的，是从足够多的样例中获得。除非利用似然估计，会使数学期望=平均值</p><p>若 X 可取值为{X1,X2,X3,X4}，作 N 次实验，分别产生的次数为{n1,n2,n3,n4}，则其取值的平均值我们可以表示为$\frac{\sum_{i=1}^4n_i\cdot x_i}{N}$，这里，$n_i/n$可以看做Xi 发生的概率$P(X=x_i)=\frac{n_i}{N}=p_i$，那么平均值也就表示为$\sum_{i=1}^4x_i\cdot p_i$,也即期望。</p><p>这里的$\sum$就会用到级数的概念，要想期望存在，前提是级数收敛或积分存在</p><p>离散型随机变量的数学期望</p>$$
+E(X)=\sum_{i=1}^\infty x_i\cdot p_i
+$$<p>连续型随机变量的数学期望</p>$$
+E(X)=\int_{-\infty}^{+\infty}x\cdot f(x)dx
+$$<p>随件变量函数的数学期望</p><p>设$Z=g(X,Y),g(X,Y)$，为连续函数</p><p>（X，Y）是二维离散型随机变量</p>$$
+E(Z)=E[g(X,Y)]=\sum_{i=1}^{\infty}\sum_{j=1}^{+\infty}g(x_i,y_j)p_{ij}
+$$<p>（X，Y）是二维连续型随机变量</p>$$
+E(Z)=E(g(X,Y))=\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}g(x,y)f(x,y)dxdy
+$$<p>☆ 数学期望的性质</p><ul><li>$E(CX)=CE(X)$</li><li>$E(X_1+X_2)=E(X_1)+E(X_2)$</li><li>若 $X_1,X_2$相互独立，则$E(X_1X_2)=E(X_1)E(X_2)$</li></ul></li><li><p>方差</p><p>方差代表了 随机变量 X 离开 E(X)的偏离程度。从统计层面，方差代表了数据围绕平均值的平均波动幅度，可以评估数据的稳定性</p><p>对于平均偏离程度的衡量，自然想到用偏离程度的平均值表示，而偏离程度可以使用$|X-E(X)|$表达，则可表达成 $E(|X-E(X)|$)但是该式有平均值不好计算，于是采用平方差来表示$E([X-E(X)]^2)$</p><p>方差定义</p>$$
+D(X)=E([X-E(X)^2])
+$$<p>离散型随机变量的方差</p>$$
+D(X)=\sum_{i=1}^\infty[x_i-E(X)]^2x_i
+$$<p>连续型随机变量方差</p>$$
+D(X)=\int_{-\infty}^{+\infty}(x-E(X))^2f(x)dx
+$$<p>方差常用的计算公式</p>$$
+D(X)=E(X^2)-[E(X)]^2
+$$<p>☆方差性质</p><ul><li>$D(CX)=C^2D(X)$</li><li>若 X1,X2 相互独立，$D(X_1+X_2)=D(X_1)+D(X_2)$</li><li>若 X,Y 相互独立，$D(XY)=D(X)D(Y)+D(X)[E(Y)]^2+D(Y)[E(Y)]^2$</li></ul></li><li><p>协方差</p><p>对于二维随机变量(X,Y)，期望、方差都是描述单个随机变量的性质，需要一个量描述两个随机变量之间的联系</p><p>协方差定义</p>$$
+Cov(X,Y)=E{[X-E(X)][Y-E(Y)]}
+$$<p>协方差常用的计算公式</p>$$
+Cov(X,Y)=E(XY)-E(X)E(Y)
+$$<p>协方差的性质：</p><ul><li>$Cov(aX,bY)=abCov(X,Y)$</li><li>$Cov(X_1+X_2,Y)=Cov(X_1,Y)+Cov(X_2,Y)$</li></ul><p>根据协方差，可以补充任意二维随机变量 X,Y 的方差关系。即无论 X,Y 是否独立，都有</p>$$
+D(X+Y)=D(X)+D(Y)+2Cov(X,Y)
+$$</li><li><p>相关系数</p><p>用协方差来描述随机变量间的联系存在两个缺点：</p><ul><li>从性质1来看，相关程度依赖于计量单位（系数）</li><li>从定义可知，数值不仅与 X,Y 本身取值有关，还与任意一个随机变量与其期望的偏离程度有关(X-E(X))，</li></ul><p>于是我们对两个随机变量的协方差归一化，用来描述两个随机变量的相关性</p>$$
+\rho = \frac{Cov(X,Y)}{\sqrt{D(X)}\sqrt{D(Y)}}=\frac{E\{[X-E(X)][Y-E(Y)]\}}{\sqrt{D(X)}\sqrt{D(Y)}}
+$$<p>相关系数的性质</p><ul><li>$|\rho| ≤ 1$</li><li>$|\rho|=1$充要条件是$P(Y=aX+b)=1$</li><li>若X,Y 相关系数$\rho=0$，则称 XY 不相关，即 XY 独立 $\iff$<ul><li>$Cov(X,Y)=0$</li><li>$D(X+Y)=D(X)+D(Y)$</li><li>$E(XY)=E(X)E(Y)$</li></ul></li></ul></li></ol></div><p class=back-link><a href=/zh/posts/>返回文章列表</a></p></article><script>window.MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js></script></main><footer class=site-footer><span>© Demin Yu</span>
+<span>Last updated: Jun 15, 2026</span></footer></div></body></html>
