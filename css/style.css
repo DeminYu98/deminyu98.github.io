@@ -1,0 +1,597 @@
+html {
+  background: #eeeeee;
+}
+
+body {
+  margin: 0;
+  color: #111111;
+  font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+a {
+  color: #224b8d;
+  text-decoration: none;
+}
+
+a:hover {
+  border-bottom: 1px dotted #777777;
+}
+
+.page-shell {
+  box-sizing: border-box;
+  max-width: 960px;
+  min-height: calc(100vh - 60px);
+  margin: 30px auto;
+  padding: 26px 50px 30px;
+  background: #ffffff;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #c8c8c8;
+}
+
+.site-title {
+  color: #224b8d;
+  font-weight: bold;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-left: auto;
+}
+
+.site-nav a {
+  font-weight: bold;
+}
+
+.language-switch {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.language-switch a,
+.language-switch span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 26px;
+  box-sizing: border-box;
+  border: 1px solid #b8c7df;
+  border-radius: 3px;
+  color: #224b8d;
+  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.85rem;
+}
+
+.language-switch .active {
+  color: #ffffff;
+  background: #527bbd;
+  border-color: #527bbd;
+}
+
+.language-switch a:hover {
+  border-bottom: 1px solid #527bbd;
+}
+
+h1,
+h2,
+h3 {
+  color: #527bbd;
+  line-height: 1.15;
+}
+
+h1 {
+  margin: 0 0 0.45em;
+  padding-bottom: 0.25em;
+  border-bottom: 1px solid #aaaaaa;
+  font-size: 1.75rem;
+}
+
+.titlebar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 16px;
+  margin: 0 0 0.9em;
+  padding-bottom: 0.32em;
+  border-bottom: 1px solid #aaaaaa;
+}
+
+.titlebar h1 {
+  grid-column: 1;
+  min-width: 0;
+  margin: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.titlebar .language-switch {
+  grid-column: 2;
+  justify-self: end;
+  margin-top: 0;
+}
+
+h2 {
+  margin: 1.25em 0 0.55em;
+  padding-bottom: 0.22em;
+  border-bottom: 1px solid #aaaaaa;
+  font-size: 1.25rem;
+}
+
+h3 {
+  margin: 0.8em 0 0.35em;
+  font-size: 1.08rem;
+}
+
+p {
+  margin: 0 0 0.85em;
+}
+
+ul,
+ol {
+  margin-top: 0.25em;
+  margin-bottom: 0.9em;
+}
+
+li {
+  margin-top: 0.55em;
+}
+
+code {
+  font-family: Menlo, Monaco, Consolas, monospace;
+  font-size: 0.92em;
+  background: #f6f8fa;
+  border: 1px solid #e2e5e8;
+  border-radius: 3px;
+  padding: 0.05em 0.25em;
+}
+
+pre {
+  overflow-x: auto;
+  padding: 14px;
+  background: #f6f8fa;
+  border: 1px solid #e2e5e8;
+  border-radius: 4px;
+}
+
+pre code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+img {
+  max-width: 100%;
+}
+
+.profile-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 30px;
+  align-items: start;
+  margin-top: 10px;
+}
+
+.profile-main h3 {
+  margin-top: 0;
+}
+
+.profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 14px;
+}
+
+.profile-photo-wrap {
+  text-align: right;
+}
+
+.profile-photo {
+  width: 210px;
+  max-height: 280px;
+  object-fit: cover;
+  border: 1px solid #cccccc;
+  box-shadow: 4px 4px 8px #888888;
+}
+
+.compact-list {
+  padding-left: 1.2em;
+}
+
+.timeline-list {
+  padding-left: 1.2em;
+}
+
+.timeline-date {
+  display: inline-block;
+  min-width: 155px;
+  color: #555555;
+}
+
+.muted {
+  color: #444444;
+}
+
+.opportunity-note {
+  margin: 1.15em 0 1.25em;
+  color: #c62828;
+  font-weight: bold;
+}
+
+.category-title {
+  color: #c62828;
+  border-bottom: none;
+}
+
+.publication-list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.publication-list td {
+  vertical-align: top;
+  padding-bottom: 18px;
+}
+
+.publication-media {
+  width: 206px;
+}
+
+.publication-image,
+.publication-placeholder {
+  display: block;
+  width: 185px;
+  height: 96px;
+  object-fit: cover;
+  border: 1px solid #dddddd;
+  box-shadow: 4px 4px 8px #888888;
+}
+
+.publication-placeholder {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777777;
+  background: #f7f7f7;
+  font-size: 0.82rem;
+}
+
+.publication-title {
+  margin-bottom: 0.2em;
+  font-weight: bold;
+}
+
+.publication-authors,
+.publication-venue,
+.publication-summary,
+.publication-links {
+  margin-bottom: 0.35em;
+}
+
+.publication-summary {
+  color: #333333;
+  font-size: 0.95rem;
+}
+
+.section-intro {
+  margin-bottom: 1.2em;
+}
+
+.post-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.post-list li {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr);
+  gap: 18px;
+  margin-top: 0;
+  padding: 12px 0;
+  border-bottom: 1px solid #dddddd;
+}
+
+.post-list time {
+  color: #555555;
+  white-space: nowrap;
+}
+
+.post-link {
+  font-weight: bold;
+}
+
+.post-list p {
+  margin: 0.2em 0 0;
+  color: #555555;
+}
+
+.single-post {
+  max-width: 790px;
+  margin: 0 auto;
+}
+
+.post-meta,
+.post-description,
+.back-link {
+  color: #555555;
+}
+
+.draft-label {
+  margin-left: 8px;
+  color: #c62828;
+  font-weight: bold;
+}
+
+.post-content {
+  margin-top: 1.2em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 1.03rem;
+  line-height: 1.78;
+  color: #1d1f23;
+}
+
+html[lang="en-US"] .post-content {
+  font-family: Charter, "Bitstream Charter", "Source Serif 4", Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+  line-height: 1.72;
+}
+
+html[lang="zh-CN"] .post-content {
+  font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
+  letter-spacing: 0;
+}
+
+.post-content > :first-child {
+  margin-top: 0;
+}
+
+.post-content p {
+  margin-bottom: 1em;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+  margin-top: 1.3em;
+}
+
+.post-content h2 {
+  font-size: 1.35rem;
+}
+
+.post-content h3 {
+  font-size: 1.17rem;
+}
+
+.post-content h4 {
+  color: #333333;
+  font-size: 1.04rem;
+}
+
+.post-content a {
+  text-decoration: underline;
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.16em;
+}
+
+.post-content a:hover {
+  border-bottom: 0;
+}
+
+.post-content ul,
+.post-content ol {
+  padding-left: 1.35em;
+}
+
+.post-content li {
+  margin-top: 0.42em;
+}
+
+.post-content li > p {
+  margin: 0.45em 0;
+}
+
+.post-content blockquote {
+  margin: 1em 0;
+  padding: 0.15em 0 0.15em 1em;
+  color: #444444;
+  border-left: 3px solid #cccccc;
+  background: #fafafa;
+}
+
+.post-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.post-content table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.post-content th,
+.post-content td {
+  padding: 6px 8px;
+  border: 1px solid #dddddd;
+}
+
+.post-content pre {
+  line-height: 1.55;
+}
+
+.post-content .highlight {
+  overflow-x: auto;
+}
+
+.post-content .highlight pre {
+  margin: 0;
+}
+
+.post-content img {
+  display: block;
+  max-width: min(100%, 760px);
+  height: auto;
+  margin: 1.35em auto;
+  border: 1px solid #e4e4e4;
+  background: #ffffff;
+}
+
+.image-placeholder {
+  margin: 1.2em 0;
+  padding: 14px 16px;
+  border: 1px dashed #b8c7df;
+  border-radius: 4px;
+  color: #53606f;
+  background: #f8fbff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.94rem;
+}
+
+.pdf-viewer {
+  margin: 1.4em 0;
+}
+
+.pdf-viewer__frame {
+  width: 100%;
+  height: var(--pdf-height, 760px);
+  min-height: 520px;
+  overflow: hidden;
+  border: 1px solid #d8d8d8;
+  border-radius: 4px;
+  background: #f5f5f5;
+}
+
+.pdf-viewer iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.pdf-viewer figcaption {
+  margin-top: 0.45em;
+  color: #666666;
+  font-size: 0.92rem;
+  text-align: right;
+}
+
+.post-content .MathJax {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.post-content mjx-container {
+  max-width: 100%;
+}
+
+.post-content mjx-container[display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: 1.1em 0;
+  padding: 0.25em 0;
+}
+
+.post-content mjx-container[jax="CHTML"][display="true"] {
+  max-width: 100%;
+}
+
+.post-content mjx-container[jax="CHTML"][display="true"] > mjx-math {
+  min-width: 0;
+}
+
+.site-footer {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 3.5em;
+  padding-top: 0.8em;
+  border-top: 1px solid #c0c0c0;
+  color: #777777;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 760px) {
+  .page-shell {
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .site-header {
+    align-items: center;
+    flex-direction: row;
+    gap: 14px;
+  }
+
+  .pdf-viewer__frame {
+    height: min(var(--pdf-height, 680px), 72vh);
+    min-height: 420px;
+  }
+
+  .site-nav {
+    justify-content: flex-end;
+  }
+
+  .titlebar {
+    gap: 10px;
+  }
+
+  .profile-section {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-photo-wrap {
+    text-align: left;
+  }
+
+  .profile-photo {
+    width: 180px;
+    max-height: 240px;
+  }
+
+  .timeline-date {
+    display: block;
+    min-width: 0;
+    margin-bottom: 2px;
+  }
+
+  .publication-list,
+  .publication-list tbody,
+  .publication-list tr,
+  .publication-list td {
+    display: block;
+    width: 100%;
+  }
+
+  .publication-image,
+  .publication-placeholder {
+    margin-bottom: 10px;
+  }
+
+  .post-list li {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+
+  .site-footer {
+    flex-direction: column;
+    gap: 3px;
+    text-align: center;
+  }
+}
