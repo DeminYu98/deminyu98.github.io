@@ -1,40 +1,75 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Demin Yu</title><link>https://deminyu98.github.io/</link><description>Recent content on Demin Yu</description><generator>Hugo</generator><language>en-US</language><copyright>© Demin Yu</copyright><lastBuildDate>Sun, 14 Apr 2024 21:52:00 +0800</lastBuildDate><atom:link href="https://deminyu98.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Understanding Diffusion Models</title><link>https://deminyu98.github.io/posts/diffusion/</link><pubDate>Sun, 14 Apr 2024 21:52:00 +0800</pubDate><guid>https://deminyu98.github.io/posts/diffusion/</guid><description>&lt;figure class="pdf-viewer"&gt;
- &lt;div class="pdf-viewer__frame" style="--pdf-height: 780px;"&gt;
- &lt;iframe src="https://deminyu98.github.io/posts/diffusion/slides.pdf" title="Diffusion models slides" loading="lazy"&gt;&lt;/iframe&gt;
- &lt;/div&gt;
- &lt;figcaption&gt;
- &lt;a href="https://deminyu98.github.io/posts/diffusion/slides.pdf"&gt;Open PDF&lt;/a&gt;
- &lt;/figcaption&gt;
-&lt;/figure&gt;</description></item><item><title>Understanding Variational Autoencoders</title><link>https://deminyu98.github.io/posts/vae/</link><pubDate>Sat, 30 Apr 2022 13:50:20 +0800</pubDate><guid>https://deminyu98.github.io/posts/vae/</guid><description>&lt;h3 id="autoencoder"&gt;Autoencoder&lt;/h3&gt;
-&lt;h4 id="general-architecture-of-autoencoders"&gt;General Architecture of Autoencoders&lt;/h4&gt;
-&lt;p&gt;The concept of an autoencoder was originally proposed for dimensionality reduction. Given an original feature vector $x$, we hope to obtain a low-dimensional representation $e(x)$ that still preserves rich information from the original features through selection, combination, transformation, and related operations. Usually $|e(x)|\ll|x|$. This type of learning is also called representation learning.&lt;/p&gt;</description></item><item><title>Paper Notes: MAE</title><link>https://deminyu98.github.io/posts/mae/</link><pubDate>Sat, 13 Nov 2021 09:28:13 +0800</pubDate><guid>https://deminyu98.github.io/posts/mae/</guid><description>&lt;div class="image-placeholder"&gt;Image pending: &lt;code&gt;s09302711132021.png&lt;/code&gt;&lt;/div&gt;
-&lt;h3 id="masked-autoencoders-are-scalable-vision-learners"&gt;&lt;a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/2111.06377.pdf"&gt;Masked Autoencoders Are Scalable Vision Learners&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The main contribution of this paper is an &lt;code&gt;asymmetric&lt;/code&gt; encoder-decoder method for image representation learning based on masked patches. Given an input image, the model divides it into patches and randomly masks a certain proportion of them. The encoder learns latent features from the visible patches, and the decoder reconstructs the complete image from those latent features. After training, the model achieves strong accuracy and excellent scalability for downstream tasks. This kind of self-supervised image learning can greatly reduce the dependence on labeled image data.&lt;/p&gt;</description></item><item><title>Paper Notes: Swin Transformer</title><link>https://deminyu98.github.io/posts/swin-transformer/</link><pubDate>Thu, 14 Oct 2021 14:05:27 +0800</pubDate><guid>https://deminyu98.github.io/posts/swin-transformer/</guid><description>&lt;p&gt;&lt;img src="https://deminyu98.github.io/posts/swin-transformer/images/03FBF17BE822CE5A.png" alt=""&gt;&lt;/p&gt;
-&lt;h2 id="abstract"&gt;Abstract&lt;/h2&gt;
-&lt;p&gt;Swin Transformer aims to introduce Transformer into computer vision as a general-purpose CV backbone, and even as a replacement for CNNs. Considering the different characteristics of text and image tasks, the main idea of Swin Transformer is a hierarchical Transformer based on shifted windows. Swin constrains self-attention computation within non-overlapping windows, while still allowing cross-window connections. This makes it more efficient, and its complexity grows linearly with image size. Experiments show that replacing CNNs with Swin improves performance on many CV tasks. &lt;a href="https://github.com/microsoft/Swin-Transformer"&gt;Swin code link&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Notes on Reinforcement Learning</title><link>https://deminyu98.github.io/posts/reinforcement-learning/</link><pubDate>Sat, 04 Sep 2021 15:09:30 +0800</pubDate><guid>https://deminyu98.github.io/posts/reinforcement-learning/</guid><description>&lt;p&gt;Previously, whether we discussed self-supervised learning or autoencoders, the essence was still that the machine recognized labels. In this sense, they still belonged to the supervised-learning paradigm.&lt;/p&gt;
-&lt;p&gt;Reinforcement learning usually faces a different scenario: humans may not know what the exact label should be, or how to evaluate whether a label is good or bad, but the machine still needs to know the criteria for judging good and bad behavior.&lt;/p&gt;</description></item><item><title>Notes on Probability Basics</title><link>https://deminyu98.github.io/posts/probability/</link><pubDate>Sun, 29 Aug 2021 10:03:19 +0800</pubDate><guid>https://deminyu98.github.io/posts/probability/</guid><description>&lt;p&gt;Comparison between probability theory and mathematical statistics:&lt;/p&gt;
-&lt;p&gt;Probability theory:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Probability theory uses &lt;strong&gt;random variables&lt;/strong&gt;, their probability distributions, numerical characteristics, and characteristic functions as mathematical tools to describe and analyze random phenomena. Its premise is that the probability distribution of the random variable is assumed to be known.&lt;/li&gt;
-&lt;li&gt;The method of probability theory is deductive: starting from assumptions, propositions, and known facts about random phenomena, conclusions are obtained through logical reasoning.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Mathematical statistics:&lt;/p&gt;</description></item><item><title>Notes on Adversarial Attack</title><link>https://deminyu98.github.io/posts/adversarial-attack/</link><pubDate>Sun, 29 Aug 2021 09:58:33 +0800</pubDate><guid>https://deminyu98.github.io/posts/adversarial-attack/</guid><description>&lt;h3 id="adversarial-attack"&gt;Adversarial Attack&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;For a trained network, we need to ask whether it is robust enough to handle malicious inputs and prevent the model from being fooled.&lt;/li&gt;
-&lt;li&gt;We hope the network not only has high accuracy, but also has the ability to resist deceptive malicious inputs.&lt;/li&gt;
-&lt;li&gt;Given an original benign image, one can add tiny perturbations to each pixel to generate an attacked image, causing the model to make an incorrect classification.&lt;/li&gt;
-&lt;li&gt;Attacks can be divided into targeted attacks and non-targeted attacks. The difference is whether the attacker predefines the wrong prediction that the model should produce.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id="attack-methods"&gt;Attack Methods&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://deminyu98.github.io/posts/adversarial-attack/images/image-20210828163419457.png" alt="IMG"&gt;&lt;/p&gt;</description></item><item><title>Notes on Generative Adversarial Networks</title><link>https://deminyu98.github.io/posts/gan-notes/</link><pubDate>Sun, 29 Aug 2021 09:08:35 +0800</pubDate><guid>https://deminyu98.github.io/posts/gan-notes/</guid><description>&lt;h3 id="generator-and-generative-models"&gt;Generator and Generative Models&lt;/h3&gt;
-&lt;h4 id="basic-structure-of-generative-models"&gt;Basic Structure of Generative Models&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Compared with a traditional discriminative model that takes input $x$ and outputs $y$, a generative model also takes a randomly generated $z$ as input. This $z$ is sampled from some distribution, and the network generates $y$ based on both $x$ and $z$.&lt;/li&gt;
-&lt;li&gt;&lt;img src="https://deminyu98.github.io/posts/gan-notes/images/image-20210828085135671.png" alt=""&gt;&lt;/li&gt;
-&lt;li&gt;Every time $x$ is given as input, a new $z$ is generated. The distribution of $z$ must be simple enough, meaning that we need to know its expression. For example, $z$ may follow a Gaussian distribution or a uniform distribution.&lt;/li&gt;
-&lt;li&gt;In this way, the same $x$ can produce different outputs $y$, and $y$ also needs to follow some distribution.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id="why-generative-models-are-needed"&gt;Why Generative Models Are Needed&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;In video prediction, the training set consists of frames extracted from videos, and the model outputs the next frame.&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Demin Yu</title>
+		<link>http://localhost:50082/</link>
+		<description>Recent content on Demin Yu</description>
+		<generator>Hugo</generator>
+		<language>en-US</language>
+		
+		
+		
+			<copyright>© Demin Yu</copyright>
+		
+		
+			<lastBuildDate>Fri, 14 Apr 2023 21:52:00 +0800</lastBuildDate>
+		
+			<atom:link href="http://localhost:50082/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Understanding Diffusion Models</title>
+				<link>http://localhost:50082/posts/diffusion/</link>
+				<pubDate>Fri, 14 Apr 2023 21:52:00 +0800</pubDate>
+				<guid>http://localhost:50082/posts/diffusion/</guid>
+				<description>&lt;figure class=&#34;pdf-viewer&#34;&gt;&#xA;  &lt;div class=&#34;pdf-viewer__frame&#34; style=&#34;--pdf-height: 780px;&#34;&gt;&#xA;    &lt;iframe src=&#34;http://localhost:50082/posts/diffusion/slides.pdf&#34; title=&#34;Diffusion models slides&#34; loading=&#34;lazy&#34;&gt;&lt;/iframe&gt;&#xA;  &lt;/div&gt;&#xA;  &lt;figcaption&gt;&#xA;    &lt;a href=&#34;http://localhost:50082/posts/diffusion/slides.pdf&#34;&gt;Open PDF&lt;/a&gt;&#xA;  &lt;/figcaption&gt;&#xA;&lt;/figure&gt;</description>
+			</item>
+			<item>
+				<title>Understanding Variational Autoencoders</title>
+				<link>http://localhost:50082/posts/vae/</link>
+				<pubDate>Sat, 30 Apr 2022 13:50:20 +0800</pubDate>
+				<guid>http://localhost:50082/posts/vae/</guid>
+				<description>&lt;h3 id=&#34;autoencoder&#34;&gt;Autoencoder&lt;/h3&gt;&#xA;&lt;h4 id=&#34;general-architecture-of-autoencoders&#34;&gt;General Architecture of Autoencoders&lt;/h4&gt;&#xA;&lt;p&gt;The concept of an autoencoder was originally proposed for dimensionality reduction. Given an original feature vector $x$, we hope to obtain a low-dimensional representation $e(x)$ that still preserves rich information from the original features through selection, combination, transformation, and related operations. Usually $|e(x)|\ll|x|$. This type of learning is also called representation learning.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Paper Notes: MAE</title>
+				<link>http://localhost:50082/posts/mae/</link>
+				<pubDate>Sat, 13 Nov 2021 09:28:13 +0800</pubDate>
+				<guid>http://localhost:50082/posts/mae/</guid>
+				<description>&lt;div class=&#34;image-placeholder&#34;&gt;Image pending: &lt;code&gt;s09302711132021.png&lt;/code&gt;&lt;/div&gt;&#xA;&lt;h3 id=&#34;masked-autoencoders-are-scalable-vision-learners&#34;&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/2111.06377.pdf&#34;&gt;Masked Autoencoders Are Scalable Vision Learners&lt;/a&gt;&lt;/h3&gt;&#xA;&lt;p&gt;The main contribution of this paper is an &lt;code&gt;asymmetric&lt;/code&gt; encoder-decoder method for image representation learning based on masked patches. Given an input image, the model divides it into patches and randomly masks a certain proportion of them. The encoder learns latent features from the visible patches, and the decoder reconstructs the complete image from those latent features. After training, the model achieves strong accuracy and excellent scalability for downstream tasks. This kind of self-supervised image learning can greatly reduce the dependence on labeled image data.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Paper Notes: Swin Transformer</title>
+				<link>http://localhost:50082/posts/swin-transformer/</link>
+				<pubDate>Thu, 14 Oct 2021 14:05:27 +0800</pubDate>
+				<guid>http://localhost:50082/posts/swin-transformer/</guid>
+				<description>&lt;p&gt;&lt;img src=&#34;http://localhost:50082/posts/swin-transformer/images/03FBF17BE822CE5A.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;abstract&#34;&gt;Abstract&lt;/h2&gt;&#xA;&lt;p&gt;Swin Transformer aims to introduce Transformer into computer vision as a general-purpose CV backbone, and even as a replacement for CNNs. Considering the different characteristics of text and image tasks, the main idea of Swin Transformer is a hierarchical Transformer based on shifted windows. Swin constrains self-attention computation within non-overlapping windows, while still allowing cross-window connections. This makes it more efficient, and its complexity grows linearly with image size. Experiments show that replacing CNNs with Swin improves performance on many CV tasks. &lt;a href=&#34;https://github.com/microsoft/Swin-Transformer&#34;&gt;Swin code link&lt;/a&gt;&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Notes on Reinforcement Learning</title>
+				<link>http://localhost:50082/posts/reinforcement-learning/</link>
+				<pubDate>Sat, 04 Sep 2021 15:09:30 +0800</pubDate>
+				<guid>http://localhost:50082/posts/reinforcement-learning/</guid>
+				<description>&lt;p&gt;Previously, whether we discussed self-supervised learning or autoencoders, the essence was still that the machine recognized labels. In this sense, they still belonged to the supervised-learning paradigm.&lt;/p&gt;&#xA;&lt;p&gt;Reinforcement learning usually faces a different scenario: humans may not know what the exact label should be, or how to evaluate whether a label is good or bad, but the machine still needs to know the criteria for judging good and bad behavior.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Notes on Probability Basics</title>
+				<link>http://localhost:50082/posts/probability/</link>
+				<pubDate>Sun, 29 Aug 2021 10:03:19 +0800</pubDate>
+				<guid>http://localhost:50082/posts/probability/</guid>
+				<description>&lt;p&gt;Comparison between probability theory and mathematical statistics:&lt;/p&gt;&#xA;&lt;p&gt;Probability theory:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Probability theory uses &lt;strong&gt;random variables&lt;/strong&gt;, their probability distributions, numerical characteristics, and characteristic functions as mathematical tools to describe and analyze random phenomena. Its premise is that the probability distribution of the random variable is assumed to be known.&lt;/li&gt;&#xA;&lt;li&gt;The method of probability theory is deductive: starting from assumptions, propositions, and known facts about random phenomena, conclusions are obtained through logical reasoning.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Mathematical statistics:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Notes on Adversarial Attack</title>
+				<link>http://localhost:50082/posts/adversarial-attack/</link>
+				<pubDate>Sun, 29 Aug 2021 09:58:33 +0800</pubDate>
+				<guid>http://localhost:50082/posts/adversarial-attack/</guid>
+				<description>&lt;h3 id=&#34;adversarial-attack&#34;&gt;Adversarial Attack&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;For a trained network, we need to ask whether it is robust enough to handle malicious inputs and prevent the model from being fooled.&lt;/li&gt;&#xA;&lt;li&gt;We hope the network not only has high accuracy, but also has the ability to resist deceptive malicious inputs.&lt;/li&gt;&#xA;&lt;li&gt;Given an original benign image, one can add tiny perturbations to each pixel to generate an attacked image, causing the model to make an incorrect classification.&lt;/li&gt;&#xA;&lt;li&gt;Attacks can be divided into targeted attacks and non-targeted attacks. The difference is whether the attacker predefines the wrong prediction that the model should produce.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 id=&#34;attack-methods&#34;&gt;Attack Methods&lt;/h4&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:50082/posts/adversarial-attack/images/image-20210828163419457.png&#34; alt=&#34;IMG&#34;&gt;&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Notes on Generative Adversarial Networks</title>
+				<link>http://localhost:50082/posts/gan-notes/</link>
+				<pubDate>Sun, 29 Aug 2021 09:08:35 +0800</pubDate>
+				<guid>http://localhost:50082/posts/gan-notes/</guid>
+				<description>&lt;h3 id=&#34;generator-and-generative-models&#34;&gt;Generator and Generative Models&lt;/h3&gt;&#xA;&lt;h4 id=&#34;basic-structure-of-generative-models&#34;&gt;Basic Structure of Generative Models&lt;/h4&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Compared with a traditional discriminative model that takes input $x$ and outputs $y$, a generative model also takes a randomly generated $z$ as input. This $z$ is sampled from some distribution, and the network generates $y$ based on both $x$ and $z$.&lt;/li&gt;&#xA;&lt;li&gt;&lt;img src=&#34;http://localhost:50082/posts/gan-notes/images/image-20210828085135671.png&#34; alt=&#34;&#34;&gt;&lt;/li&gt;&#xA;&lt;li&gt;Every time $x$ is given as input, a new $z$ is generated. The distribution of $z$ must be simple enough, meaning that we need to know its expression. For example, $z$ may follow a Gaussian distribution or a uniform distribution.&lt;/li&gt;&#xA;&lt;li&gt;In this way, the same $x$ can produce different outputs $y$, and $y$ also needs to follow some distribution.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 id=&#34;why-generative-models-are-needed&#34;&gt;Why Generative Models Are Needed&lt;/h4&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;In video prediction, the training set consists of frames extracted from videos, and the model outputs the next frame.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

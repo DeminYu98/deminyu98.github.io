@@ -1,9 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>模型渗透 on Demin Yu</title><link>https://deminyu98.github.io/zh/tags/%E6%A8%A1%E5%9E%8B%E6%B8%97%E9%80%8F/</link><description>Recent content in 模型渗透 on Demin Yu</description><generator>Hugo</generator><language>zh-CN</language><copyright>© Demin Yu</copyright><lastBuildDate>Sun, 29 Aug 2021 09:58:33 +0800</lastBuildDate><atom:link href="https://deminyu98.github.io/zh/tags/%E6%A8%A1%E5%9E%8B%E6%B8%97%E9%80%8F/index.xml" rel="self" type="application/rss+xml"/><item><title>【渔樵耕读】对抗性攻击 Adversarial Attack</title><link>https://deminyu98.github.io/zh/posts/adversarial-attack/</link><pubDate>Sun, 29 Aug 2021 09:58:33 +0800</pubDate><guid>https://deminyu98.github.io/zh/posts/adversarial-attack/</guid><description>&lt;h3 id="adversarial-attack"&gt;Adversarial Attack&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;对于训练后的网络，是否具备鲁棒性来应对恶意输入，防止模型被“糊弄”&lt;/li&gt;
-&lt;li&gt;希望网络不仅具有 高准确率，还需要能够具有应对恶意输入的被欺骗能力&lt;/li&gt;
-&lt;li&gt;对于原始图像 Benign Image，对每个像素添加微小杂质生成 Attacked Image，使得模型的分类结果产生错误。&lt;/li&gt;
-&lt;li&gt;攻击分为 Targeted 攻击和 Non-Targeted 攻击，区别是是否预定模型错误的估计。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id="攻击方法"&gt;攻击方法&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://deminyu98.github.io/posts/adversarial-attack/images/image-20210828163419457.png" alt="IMG"&gt;&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>模型渗透 on Demin Yu</title>
+		<link>http://localhost:50082/zh/tags/%E6%A8%A1%E5%9E%8B%E6%B8%97%E9%80%8F/</link>
+		<description>Recent content in 模型渗透 on Demin Yu</description>
+		<generator>Hugo</generator>
+		<language>zh-CN</language>
+		
+		
+		
+			<copyright>© Demin Yu</copyright>
+		
+		
+			<lastBuildDate>Sun, 29 Aug 2021 09:58:33 +0800</lastBuildDate>
+		
+			<atom:link href="http://localhost:50082/zh/tags/%E6%A8%A1%E5%9E%8B%E6%B8%97%E9%80%8F/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>【渔樵耕读】对抗性攻击 Adversarial Attack</title>
+				<link>http://localhost:50082/zh/posts/adversarial-attack/</link>
+				<pubDate>Sun, 29 Aug 2021 09:58:33 +0800</pubDate>
+				<guid>http://localhost:50082/zh/posts/adversarial-attack/</guid>
+				<description>&lt;h3 id=&#34;adversarial-attack&#34;&gt;Adversarial Attack&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;对于训练后的网络，是否具备鲁棒性来应对恶意输入，防止模型被“糊弄”&lt;/li&gt;&#xA;&lt;li&gt;希望网络不仅具有 高准确率，还需要能够具有应对恶意输入的被欺骗能力&lt;/li&gt;&#xA;&lt;li&gt;对于原始图像 Benign Image，对每个像素添加微小杂质生成 Attacked Image，使得模型的分类结果产生错误。&lt;/li&gt;&#xA;&lt;li&gt;攻击分为 Targeted 攻击和 Non-Targeted 攻击，区别是是否预定模型错误的估计。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 id=&#34;攻击方法&#34;&gt;攻击方法&lt;/h4&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:50082/posts/adversarial-attack/images/image-20210828163419457.png&#34; alt=&#34;IMG&#34;&gt;&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

@@ -1,15 +1,201 @@
-<!doctype html><html lang=en-US><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Notes on Adversarial Attack | Demin Yu</title><meta name=description content="Demin Yu's academic homepage and posts."><link rel=canonical href=https://deminyu98.github.io/posts/adversarial-attack/><link rel=alternate hreflang=en href=https://deminyu98.github.io/posts/adversarial-attack/><link rel=alternate hreflang=zh href=https://deminyu98.github.io/zh/posts/adversarial-attack/><link rel=icon href=/images/profile-small.jpg><link rel=stylesheet href="/css/style.css?v=20260614-blogs"></head><body><div class=page-shell><header class=site-header><a class=site-title href=/>Home</a><nav class=site-nav aria-label="Main navigation"><a href=/zh/posts/>Blogs</a></nav></header><main id=content><article class=single-post><div id=toptitle class=titlebar><h1>Notes on Adversarial Attack</h1><div class=language-switch aria-label="Language switcher"><a class=active href=/posts/adversarial-attack/ title=English aria-current=page>EN
-</a><a href=/zh/posts/adversarial-attack/ title=中文>中</a></div></div><p class=post-meta>Posted at Aug 29, 2021</p><div class=post-content><h3 id=adversarial-attack>Adversarial Attack</h3><ul><li>For a trained network, we need to ask whether it is robust enough to handle malicious inputs and prevent the model from being fooled.</li><li>We hope the network not only has high accuracy, but also has the ability to resist deceptive malicious inputs.</li><li>Given an original benign image, one can add tiny perturbations to each pixel to generate an attacked image, causing the model to make an incorrect classification.</li><li>Attacks can be divided into targeted attacks and non-targeted attacks. The difference is whether the attacker predefines the wrong prediction that the model should produce.</li></ul><h4 id=attack-methods>Attack Methods</h4><p><img src=/posts/adversarial-attack/images/image-20210828163419457.png alt=IMG></p><ul><li><p>For the model being deceived, since the attack is performed after model deployment, we can treat the model parameters as fixed.</p></li><li><p>For the original input image $x^0$, the output is $y^0$. For the attacked image $x$, the output is $y$. If the true label is $\hat{y}$, we hope the output $y$ of the attacked image is as far away from $\hat{y}$ as possible. Such a loss function can be defined as the negative cross-entropy. On the other hand, we also want the attacked image to be as similar as possible to the original image. Therefore, we need $d(x^0,x)\le \epsilon$, meaning the image distance should be below a threshold. This distance can be the maximum difference, mean squared difference, or other metrics.</p><ul><li>L2 norm: the sum of squared differences.</li><li>L-infinity: the maximum absolute difference.</li><li>Adjusting every pixel in an image slightly and adjusting only one pixel more strongly may produce the same L2 norm, but the L-infinity distance can be very different.</li><li>From human visual perception, small changes spread across many pixels are harder to notice.</li></ul></li><li><p>For targeted attacks, we hope the attacked image is far from the true label and close to the target label.</p></li><li><p>With model parameters fixed, generating an attacked image means optimizing the input $x$ according to the loss function. This is similar to ordinary model training, except that the optimized variable is the input image rather than the model parameters.</p><ul><li><p>During model training:</p>$$
-w^*,b^*
-= \operatorname*{arg\,min}_{w,b} L(y,\hat{y})
-$$</li><li><p>When generating an attacked image:</p>$$
-x^*
-= \operatorname*{arg\,min}_{x} L(x)
-$$</li><li><p>Use gradient descent to obtain $x$:</p><ul><li><p>Initialize the input image as the real image $x^0$.</p></li><li><p>For each step $t$:</p>$$
-x^t \leftarrow x^{t-1}+\eta \frac{\partial L(x)}{\partial x}
-$$</li><li><p>If $d(x^0,x^t) > \epsilon$, then project or fix $x^t$ back into the allowed perturbation range.</p></li></ul></li></ul></li><li><p>In the procedure above, we use gradient descent to solve for the attacked image. Computing the gradient requires knowing the model parameters, because</p>$$
-g=\frac{\partial L(x)}{\partial x},\quad
-L(x)=-e(y,\hat{y}),\quad
-\hat{y}=f_{\theta}(x)
-$$<p>Here, $\theta$ denotes the model parameters that must be known. This type of attack is called a white-box attack because it requires access to the model parameters. The corresponding setting is the black-box attack.</p></li></ul><h4 id=black-box-attack>Black-Box Attack</h4><ul><li>Suppose we do not know the parameters of a model, but we know the dataset used to train it. We can use that dataset to train our own network, whose architecture may be different from the target network. Such a network is called a proxy network. Then we can use a white-box method on the proxy network to compute adversarial images, which may also attack the original model.</li><li>If the training set of the original model is unknown, we can feed many images into the model, collect their output labels, and use these image-label pairs to train our proxy network. This can also produce an effective attack.</li><li>Black-box attacks are usually used for non-targeted attacks.</li><li>Attacks are relatively easy to implement:<ul><li>Both black-box and white-box attacks can have high success rates.</li><li>A single-pixel change can be enough to complete an attack.</li><li>One perturbation pattern can attack images from multiple categories.</li><li>Attacks can be realized in the physical world, such as wearing specially designed glasses for face recognition or modifying traffic signs.</li><li>Model backdoor: during model training, specific images are added, and their labels may still appear subjectively correct. After the model is trained on this dataset, it may classify an image incorrectly when a certain trigger appears, even if that image is not necessarily the exact image from the training set.</li></ul></li></ul><h4 id=defense-methods>Defense Methods</h4><p>Passive defenses:</p><ul><li>Add a filter before the image enters the model. This filter may be a very simple preprocessing operation.<ul><li>For example, smoothing or blurring can greatly reduce attacks, because adversarial signals in attacked images are highly specific. Once the image is blurred, the attack signal is affected.</li><li>Compress and then decompress the image.</li><li>Other similar preprocessing operations.</li></ul></li><li>Filters can also be broken. A filter can be regarded as a hidden layer of the model. If the attacker knows the exact filtering method, the same filter can be included when generating the attacked image, producing a corresponding adversarial example.</li><li>A related defense is to use randomized filters.</li></ul><p>Active defenses:</p><ul><li>Train a model that is difficult to attack from the beginning, namely adversarial training, so that the model becomes more robust.</li><li>The main idea is: for a training set $(X,y)$, first train the model, then use a white-box attack to obtain attacked images $X'$. Assign correct labels to the attacked images to obtain $(X',y)$, then merge the two datasets into $(X+X',y)$ and retrain the model. This process can be repeated multiple times.</li><li>This idea can also be viewed as a form of data augmentation.</li><li>The computation is very expensive.</li></ul></div><p class=back-link><a href=/posts/>Back to posts</a></p></article><script>window.MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js></script></main><footer class=site-footer><span>© Demin Yu</span>
-<span>Last updated: Jun 15, 2026</span></footer></div></body></html>
+<!doctype html>
+<html lang="en-US">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=50082&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Notes on Adversarial Attack | Demin Yu</title>
+  <meta name="description" content="Demin Yu&#39;s academic homepage and posts.">
+  <link rel="canonical" href="http://localhost:50082/posts/adversarial-attack/">
+  
+  
+  <link rel="alternate" hreflang="en" href="http://localhost:50082/posts/adversarial-attack/">
+  
+  
+  
+  <link rel="alternate" hreflang="zh" href="http://localhost:50082/zh/posts/adversarial-attack/">
+  
+  
+  <link rel="icon" href="/images/profile-small.jpg">
+  <link rel="stylesheet" href="/css/style.css?v=20260614-blogs">
+</head>
+
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+  <a class="site-title" href="/">Home</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="/zh/posts/">Blogs</a>
+  </nav>
+</header>
+
+      <main id="content">
+        
+
+
+
+<article class="single-post">
+  <div id="toptitle" class="titlebar">
+    <h1>Notes on Adversarial Attack</h1>
+    
+    
+
+<div class="language-switch" aria-label="Language switcher">
+  
+  
+  
+  <a class="active" href="/posts/adversarial-attack/" title="English" aria-current="page">
+    EN
+  </a>
+  
+  
+  
+  
+  <a class="" href="/zh/posts/adversarial-attack/" title="中文">
+    中
+  </a>
+  
+  
+</div>
+
+
+    
+  </div>
+  <p class="post-meta">
+    Posted at Aug 29, 2021
+    
+  </p>
+  
+  <div class="post-content">
+    <h3 id="adversarial-attack">Adversarial Attack</h3>
+<ul>
+<li>For a trained network, we need to ask whether it is robust enough to handle malicious inputs and prevent the model from being fooled.</li>
+<li>We hope the network not only has high accuracy, but also has the ability to resist deceptive malicious inputs.</li>
+<li>Given an original benign image, one can add tiny perturbations to each pixel to generate an attacked image, causing the model to make an incorrect classification.</li>
+<li>Attacks can be divided into targeted attacks and non-targeted attacks. The difference is whether the attacker predefines the wrong prediction that the model should produce.</li>
+</ul>
+<h4 id="attack-methods">Attack Methods</h4>
+<p><img src="/posts/adversarial-attack/images/image-20210828163419457.png" alt="IMG"></p>
+<ul>
+<li>
+<p>For the model being deceived, since the attack is performed after model deployment, we can treat the model parameters as fixed.</p>
+</li>
+<li>
+<p>For the original input image $x^0$, the output is $y^0$. For the attacked image $x$, the output is $y$. If the true label is $\hat{y}$, we hope the output $y$ of the attacked image is as far away from $\hat{y}$ as possible. Such a loss function can be defined as the negative cross-entropy. On the other hand, we also want the attacked image to be as similar as possible to the original image. Therefore, we need $d(x^0,x)\le \epsilon$, meaning the image distance should be below a threshold. This distance can be the maximum difference, mean squared difference, or other metrics.</p>
+<ul>
+<li>L2 norm: the sum of squared differences.</li>
+<li>L-infinity: the maximum absolute difference.</li>
+<li>Adjusting every pixel in an image slightly and adjusting only one pixel more strongly may produce the same L2 norm, but the L-infinity distance can be very different.</li>
+<li>From human visual perception, small changes spread across many pixels are harder to notice.</li>
+</ul>
+</li>
+<li>
+<p>For targeted attacks, we hope the attacked image is far from the true label and close to the target label.</p>
+</li>
+<li>
+<p>With model parameters fixed, generating an attacked image means optimizing the input $x$ according to the loss function. This is similar to ordinary model training, except that the optimized variable is the input image rather than the model parameters.</p>
+<ul>
+<li>
+<p>During model training:</p>
+$$
+    w^*,b^*
+    = \operatorname*{arg\,min}_{w,b} L(y,\hat{y})
+    $$</li>
+<li>
+<p>When generating an attacked image:</p>
+$$
+    x^*
+    = \operatorname*{arg\,min}_{x} L(x)
+    $$</li>
+<li>
+<p>Use gradient descent to obtain $x$:</p>
+<ul>
+<li>
+<p>Initialize the input image as the real image $x^0$.</p>
+</li>
+<li>
+<p>For each step $t$:</p>
+$$
+      x^t \leftarrow x^{t-1}+\eta \frac{\partial L(x)}{\partial x}
+      $$</li>
+<li>
+<p>If $d(x^0,x^t) > \epsilon$, then project or fix $x^t$ back into the allowed perturbation range.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>In the procedure above, we use gradient descent to solve for the attacked image. Computing the gradient requires knowing the model parameters, because</p>
+$$
+  g=\frac{\partial L(x)}{\partial x},\quad
+  L(x)=-e(y,\hat{y}),\quad
+  \hat{y}=f_{\theta}(x)
+  $$<p>Here, $\theta$ denotes the model parameters that must be known. This type of attack is called a white-box attack because it requires access to the model parameters. The corresponding setting is the black-box attack.</p>
+</li>
+</ul>
+<h4 id="black-box-attack">Black-Box Attack</h4>
+<ul>
+<li>Suppose we do not know the parameters of a model, but we know the dataset used to train it. We can use that dataset to train our own network, whose architecture may be different from the target network. Such a network is called a proxy network. Then we can use a white-box method on the proxy network to compute adversarial images, which may also attack the original model.</li>
+<li>If the training set of the original model is unknown, we can feed many images into the model, collect their output labels, and use these image-label pairs to train our proxy network. This can also produce an effective attack.</li>
+<li>Black-box attacks are usually used for non-targeted attacks.</li>
+<li>Attacks are relatively easy to implement:
+<ul>
+<li>Both black-box and white-box attacks can have high success rates.</li>
+<li>A single-pixel change can be enough to complete an attack.</li>
+<li>One perturbation pattern can attack images from multiple categories.</li>
+<li>Attacks can be realized in the physical world, such as wearing specially designed glasses for face recognition or modifying traffic signs.</li>
+<li>Model backdoor: during model training, specific images are added, and their labels may still appear subjectively correct. After the model is trained on this dataset, it may classify an image incorrectly when a certain trigger appears, even if that image is not necessarily the exact image from the training set.</li>
+</ul>
+</li>
+</ul>
+<h4 id="defense-methods">Defense Methods</h4>
+<p>Passive defenses:</p>
+<ul>
+<li>Add a filter before the image enters the model. This filter may be a very simple preprocessing operation.
+<ul>
+<li>For example, smoothing or blurring can greatly reduce attacks, because adversarial signals in attacked images are highly specific. Once the image is blurred, the attack signal is affected.</li>
+<li>Compress and then decompress the image.</li>
+<li>Other similar preprocessing operations.</li>
+</ul>
+</li>
+<li>Filters can also be broken. A filter can be regarded as a hidden layer of the model. If the attacker knows the exact filtering method, the same filter can be included when generating the attacked image, producing a corresponding adversarial example.</li>
+<li>A related defense is to use randomized filters.</li>
+</ul>
+<p>Active defenses:</p>
+<ul>
+<li>Train a model that is difficult to attack from the beginning, namely adversarial training, so that the model becomes more robust.</li>
+<li>The main idea is: for a training set $(X,y)$, first train the model, then use a white-box attack to obtain attacked images $X'$. Assign correct labels to the attacked images to obtain $(X',y)$, then merge the two datasets into $(X+X',y)$ and retrain the model. This process can be repeated multiple times.</li>
+<li>This idea can also be viewed as a form of data augmentation.</li>
+<li>The computation is very expensive.</li>
+</ul>
+
+  </div>
+  <p class="back-link"><a href="/posts/">Back to posts</a></p>
+</article>
+
+
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+
+
+      </main>
+      <footer class="site-footer">
+  <span>© Demin Yu</span>
+  <span>Last updated: Jun 15, 2026</span>
+</footer>
+
+    </div>
+  </body>
+</html>

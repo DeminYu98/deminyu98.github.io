@@ -1,39 +1,75 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Demin Yu</title><link>https://deminyu98.github.io/zh/</link><description>Recent content on Demin Yu</description><generator>Hugo</generator><language>zh-CN</language><copyright>© Demin Yu</copyright><lastBuildDate>Sun, 14 Apr 2024 21:52:00 +0800</lastBuildDate><atom:link href="https://deminyu98.github.io/zh/index.xml" rel="self" type="application/rss+xml"/><item><title>【渔樵耕读】深入理解 Diffusion Model</title><link>https://deminyu98.github.io/zh/posts/diffusion/</link><pubDate>Sun, 14 Apr 2024 21:52:00 +0800</pubDate><guid>https://deminyu98.github.io/zh/posts/diffusion/</guid><description>&lt;figure class="pdf-viewer"&gt;
- &lt;div class="pdf-viewer__frame" style="--pdf-height: 780px;"&gt;
- &lt;iframe src="https://deminyu98.github.io/posts/diffusion/slides.pdf" title="Diffusion models slides" loading="lazy"&gt;&lt;/iframe&gt;
- &lt;/div&gt;
- &lt;figcaption&gt;
- &lt;a href="https://deminyu98.github.io/posts/diffusion/slides.pdf"&gt;打开 PDF&lt;/a&gt;
- &lt;/figcaption&gt;
-&lt;/figure&gt;</description></item><item><title>【渔樵耕读】深入理解VAE</title><link>https://deminyu98.github.io/zh/posts/vae/</link><pubDate>Sat, 30 Apr 2022 13:50:20 +0800</pubDate><guid>https://deminyu98.github.io/zh/posts/vae/</guid><description>&lt;h3 id="自编码器auto-encoder"&gt;自编码器Auto Encoder&lt;/h3&gt;
-&lt;h4 id="自编码器通用架构"&gt;自编码器通用架构&lt;/h4&gt;
-&lt;p&gt;自编码器概念最初被提出是基于对数据降维的目的，我们希望能够从原始特征$x$中，通过筛选、组合、变换等方式获得包含原始丰富信息的低维特征表示$e(x)$，通常$|e(x)|\ll|x|$，这种学习方式也称为表征学习&lt;code&gt;Represent Learning&lt;/code&gt;。通俗的去思考，我们没有办法像监督学习那样对不同特征提前设定低维表征，这就需要一种自监督方法去发现原始特征之间的关系。表征学习的思路有很多种，这里我们沿着一类基于&lt;code&gt;Encoder-Decoder&lt;/code&gt;架构的降维方法展开。这种架构利用编码器将原始特征降维获得&lt;strong&gt;低维编码&lt;/strong&gt;，然后再利用解码器将低维编码&lt;strong&gt;重构&lt;/strong&gt;。这相当于构造了一个自监督学习任务，学习目标是希望重构的结果与原始输入尽可能相同。这里的低维编码我们可以称为&lt;strong&gt;信息瓶颈&lt;/strong&gt;，原始特征的重要信息可以经过信息瓶颈被重构。&lt;/p&gt;</description></item><item><title>【渔樵耕读】《MAE》</title><link>https://deminyu98.github.io/zh/posts/mae/</link><pubDate>Sat, 13 Nov 2021 09:28:13 +0800</pubDate><guid>https://deminyu98.github.io/zh/posts/mae/</guid><description>&lt;div class="image-placeholder"&gt;Image pending: &lt;code&gt;s09302711132021.png&lt;/code&gt;&lt;/div&gt;
-&lt;h3 id="masked-autoencoders-are-scalable-vision-learners"&gt;&lt;a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/2111.06377.pdf"&gt;Masked Autoencoders Are Scalable Vision Learners&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;文章主要工作在于提出一种基于掩码块(Masked Patch)的&lt;code&gt;不对称&lt;/code&gt;Encoder-Decoder图像表示学习的方法。给定输入图像，划分patch并按特定比例随机mask。编码器在可见patch上学习潜在特征，解码器根据潜在特征重构完整图像。经过训练的模型具备很好的准确性和极高可拓展性来应用到下游任务。这种自监督的图像学习方式能够极大减少对标注图像数据的依赖。&lt;/p&gt;</description></item><item><title>【渔樵耕读】《Swim Transformer》</title><link>https://deminyu98.github.io/zh/posts/swin-transformer/</link><pubDate>Thu, 14 Oct 2021 14:05:27 +0800</pubDate><guid>https://deminyu98.github.io/zh/posts/swin-transformer/</guid><description>&lt;p&gt;&lt;img src="https://deminyu98.github.io/posts/swin-transformer/images/03FBF17BE822CE5A.png" alt=""&gt;&lt;/p&gt;
-&lt;h2 id="abstract"&gt;Abstract&lt;/h2&gt;
-&lt;p&gt;SwimTransformer 目的是将Transformer引入到CV领域，作为CV的通用backbone，甚至替代CNN。考虑到文本任务和图像任务的不同特点，SwimTransformer的主要思路是基于「滑动窗口」的「分层」Transformer。Swim约束self-attention在非重叠窗口计算，另外允许跨窗口联系，具有更高效率，而且复杂度与图像大小线性相关。实验证明，将Swim代替CNN在多种CV任务上效果都有所提升。&lt;a href="https://github.com/microsoft/Swin-Transformer"&gt;Swim代码链接&lt;/a&gt;&lt;/p&gt;</description></item><item><title>【渔樵耕读】强化学习 Reinforcement Learning</title><link>https://deminyu98.github.io/zh/posts/reinforcement-learning/</link><pubDate>Sat, 04 Sep 2021 15:09:30 +0800</pubDate><guid>https://deminyu98.github.io/zh/posts/reinforcement-learning/</guid><description>&lt;p&gt;先前无论 self-supervised learning 还是 autoencoder，本质上还是通过机器识别 label，本质上还是属于 supervised learning 的范式。&lt;/p&gt;</description></item><item><title>【渔樵耕读】概率论基础</title><link>https://deminyu98.github.io/zh/posts/probability/</link><pubDate>Sun, 29 Aug 2021 10:03:19 +0800</pubDate><guid>https://deminyu98.github.io/zh/posts/probability/</guid><description>&lt;p&gt;概率论与数理统计的对比：&lt;/p&gt;
-&lt;p&gt;概率论:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;概率论将&lt;strong&gt;随机变量&lt;/strong&gt;及其概率分布、数字特征及特征函数，作为数学工具对随机现象进行描述分析。其前提条件是 「假设随机变量的概率分布已知」&lt;/li&gt;
-&lt;li&gt;概率论研究问题的方法是从假设、命题、已知的随机现象的事实触发，按逻辑推理得到结论，是「演绎式」&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;数理统计&lt;/p&gt;</description></item><item><title>【渔樵耕读】对抗性攻击 Adversarial Attack</title><link>https://deminyu98.github.io/zh/posts/adversarial-attack/</link><pubDate>Sun, 29 Aug 2021 09:58:33 +0800</pubDate><guid>https://deminyu98.github.io/zh/posts/adversarial-attack/</guid><description>&lt;h3 id="adversarial-attack"&gt;Adversarial Attack&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;对于训练后的网络，是否具备鲁棒性来应对恶意输入，防止模型被“糊弄”&lt;/li&gt;
-&lt;li&gt;希望网络不仅具有 高准确率，还需要能够具有应对恶意输入的被欺骗能力&lt;/li&gt;
-&lt;li&gt;对于原始图像 Benign Image，对每个像素添加微小杂质生成 Attacked Image，使得模型的分类结果产生错误。&lt;/li&gt;
-&lt;li&gt;攻击分为 Targeted 攻击和 Non-Targeted 攻击，区别是是否预定模型错误的估计。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id="攻击方法"&gt;攻击方法&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://deminyu98.github.io/posts/adversarial-attack/images/image-20210828163419457.png" alt="IMG"&gt;&lt;/p&gt;</description></item><item><title>【渔樵耕读】生成对抗网络 GAN</title><link>https://deminyu98.github.io/zh/posts/gan-notes/</link><pubDate>Sun, 29 Aug 2021 09:08:35 +0800</pubDate><guid>https://deminyu98.github.io/zh/posts/gan-notes/</guid><description>&lt;h3 id="generator-生成式模型"&gt;generator 生成式模型&lt;/h3&gt;
-&lt;h4 id="生成式模型基本结构"&gt;生成式模型基本结构&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;与传统的输入 x 输出 y 的判别式模型对比，生成式模型还会有一个随机生成的 z 作为输入，这个 z 从某种分布中随机生成，network 同时根据 x 与 z 生成 y&lt;/li&gt;
-&lt;li&gt;&lt;img src="https://deminyu98.github.io/posts/gan-notes/images/image-20210828085135671.png" alt=""&gt;&lt;/li&gt;
-&lt;li&gt;每一次 输入 x，都会生成一次 z，这个 z 的分布必须够简单，即需要知道 z 的表达式。例如 z 属于高斯分布、平均分布等&lt;/li&gt;
-&lt;li&gt;这样同样的x，输出的 y 也不相同，y 也需要属于某种分布&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id="为何需要生成式模型"&gt;为何需要生成式模型&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;对于视频预测问题，训练集是从视频中提取的某些帧，模型输出入下一帧的画面。&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Demin Yu</title>
+		<link>http://localhost:50082/zh/</link>
+		<description>Recent content on Demin Yu</description>
+		<generator>Hugo</generator>
+		<language>zh-CN</language>
+		
+		
+		
+			<copyright>© Demin Yu</copyright>
+		
+		
+			<lastBuildDate>Fri, 14 Apr 2023 21:52:00 +0800</lastBuildDate>
+		
+			<atom:link href="http://localhost:50082/zh/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>【渔樵耕读】深入理解 Diffusion Model</title>
+				<link>http://localhost:50082/zh/posts/diffusion/</link>
+				<pubDate>Fri, 14 Apr 2023 21:52:00 +0800</pubDate>
+				<guid>http://localhost:50082/zh/posts/diffusion/</guid>
+				<description>&lt;figure class=&#34;pdf-viewer&#34;&gt;&#xA;  &lt;div class=&#34;pdf-viewer__frame&#34; style=&#34;--pdf-height: 780px;&#34;&gt;&#xA;    &lt;iframe src=&#34;http://localhost:50082/posts/diffusion/slides.pdf&#34; title=&#34;Diffusion models slides&#34; loading=&#34;lazy&#34;&gt;&lt;/iframe&gt;&#xA;  &lt;/div&gt;&#xA;  &lt;figcaption&gt;&#xA;    &lt;a href=&#34;http://localhost:50082/posts/diffusion/slides.pdf&#34;&gt;打开 PDF&lt;/a&gt;&#xA;  &lt;/figcaption&gt;&#xA;&lt;/figure&gt;</description>
+			</item>
+			<item>
+				<title>【渔樵耕读】深入理解VAE</title>
+				<link>http://localhost:50082/zh/posts/vae/</link>
+				<pubDate>Sat, 30 Apr 2022 13:50:20 +0800</pubDate>
+				<guid>http://localhost:50082/zh/posts/vae/</guid>
+				<description>&lt;h3 id=&#34;自编码器auto-encoder&#34;&gt;自编码器Auto Encoder&lt;/h3&gt;&#xA;&lt;h4 id=&#34;自编码器通用架构&#34;&gt;自编码器通用架构&lt;/h4&gt;&#xA;&lt;p&gt;自编码器概念最初被提出是基于对数据降维的目的，我们希望能够从原始特征$x$中，通过筛选、组合、变换等方式获得包含原始丰富信息的低维特征表示$e(x)$，通常$|e(x)|\ll|x|$，这种学习方式也称为表征学习&lt;code&gt;Represent Learning&lt;/code&gt;。通俗的去思考，我们没有办法像监督学习那样对不同特征提前设定低维表征，这就需要一种自监督方法去发现原始特征之间的关系。表征学习的思路有很多种，这里我们沿着一类基于&lt;code&gt;Encoder-Decoder&lt;/code&gt;架构的降维方法展开。这种架构利用编码器将原始特征降维获得&lt;strong&gt;低维编码&lt;/strong&gt;，然后再利用解码器将低维编码&lt;strong&gt;重构&lt;/strong&gt;。这相当于构造了一个自监督学习任务，学习目标是希望重构的结果与原始输入尽可能相同。这里的低维编码我们可以称为&lt;strong&gt;信息瓶颈&lt;/strong&gt;，原始特征的重要信息可以经过信息瓶颈被重构。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>【渔樵耕读】《MAE》</title>
+				<link>http://localhost:50082/zh/posts/mae/</link>
+				<pubDate>Sat, 13 Nov 2021 09:28:13 +0800</pubDate>
+				<guid>http://localhost:50082/zh/posts/mae/</guid>
+				<description>&lt;div class=&#34;image-placeholder&#34;&gt;Image pending: &lt;code&gt;s09302711132021.png&lt;/code&gt;&lt;/div&gt;&#xA;&lt;h3 id=&#34;masked-autoencoders-are-scalable-vision-learners&#34;&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/2111.06377.pdf&#34;&gt;Masked Autoencoders Are Scalable Vision Learners&lt;/a&gt;&lt;/h3&gt;&#xA;&lt;p&gt;文章主要工作在于提出一种基于掩码块(Masked Patch)的&lt;code&gt;不对称&lt;/code&gt;Encoder-Decoder图像表示学习的方法。给定输入图像，划分patch并按特定比例随机mask。编码器在可见patch上学习潜在特征，解码器根据潜在特征重构完整图像。经过训练的模型具备很好的准确性和极高可拓展性来应用到下游任务。这种自监督的图像学习方式能够极大减少对标注图像数据的依赖。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>【渔樵耕读】《Swim Transformer》</title>
+				<link>http://localhost:50082/zh/posts/swin-transformer/</link>
+				<pubDate>Thu, 14 Oct 2021 14:05:27 +0800</pubDate>
+				<guid>http://localhost:50082/zh/posts/swin-transformer/</guid>
+				<description>&lt;p&gt;&lt;img src=&#34;http://localhost:50082/posts/swin-transformer/images/03FBF17BE822CE5A.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;abstract&#34;&gt;Abstract&lt;/h2&gt;&#xA;&lt;p&gt;SwimTransformer 目的是将Transformer引入到CV领域，作为CV的通用backbone，甚至替代CNN。考虑到文本任务和图像任务的不同特点，SwimTransformer的主要思路是基于「滑动窗口」的「分层」Transformer。Swim约束self-attention在非重叠窗口计算，另外允许跨窗口联系，具有更高效率，而且复杂度与图像大小线性相关。实验证明，将Swim代替CNN在多种CV任务上效果都有所提升。&lt;a href=&#34;https://github.com/microsoft/Swin-Transformer&#34;&gt;Swim代码链接&lt;/a&gt;&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>【渔樵耕读】强化学习 Reinforcement Learning</title>
+				<link>http://localhost:50082/zh/posts/reinforcement-learning/</link>
+				<pubDate>Sat, 04 Sep 2021 15:09:30 +0800</pubDate>
+				<guid>http://localhost:50082/zh/posts/reinforcement-learning/</guid>
+				<description>&lt;p&gt;先前无论 self-supervised learning 还是 autoencoder，本质上还是通过机器识别 label，本质上还是属于 supervised learning 的范式。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>【渔樵耕读】概率论基础</title>
+				<link>http://localhost:50082/zh/posts/probability/</link>
+				<pubDate>Sun, 29 Aug 2021 10:03:19 +0800</pubDate>
+				<guid>http://localhost:50082/zh/posts/probability/</guid>
+				<description>&lt;p&gt;概率论与数理统计的对比：&lt;/p&gt;&#xA;&lt;p&gt;概率论:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;概率论将&lt;strong&gt;随机变量&lt;/strong&gt;及其概率分布、数字特征及特征函数，作为数学工具对随机现象进行描述分析。其前提条件是 「假设随机变量的概率分布已知」&lt;/li&gt;&#xA;&lt;li&gt;概率论研究问题的方法是从假设、命题、已知的随机现象的事实触发，按逻辑推理得到结论，是「演绎式」&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;数理统计&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>【渔樵耕读】对抗性攻击 Adversarial Attack</title>
+				<link>http://localhost:50082/zh/posts/adversarial-attack/</link>
+				<pubDate>Sun, 29 Aug 2021 09:58:33 +0800</pubDate>
+				<guid>http://localhost:50082/zh/posts/adversarial-attack/</guid>
+				<description>&lt;h3 id=&#34;adversarial-attack&#34;&gt;Adversarial Attack&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;对于训练后的网络，是否具备鲁棒性来应对恶意输入，防止模型被“糊弄”&lt;/li&gt;&#xA;&lt;li&gt;希望网络不仅具有 高准确率，还需要能够具有应对恶意输入的被欺骗能力&lt;/li&gt;&#xA;&lt;li&gt;对于原始图像 Benign Image，对每个像素添加微小杂质生成 Attacked Image，使得模型的分类结果产生错误。&lt;/li&gt;&#xA;&lt;li&gt;攻击分为 Targeted 攻击和 Non-Targeted 攻击，区别是是否预定模型错误的估计。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 id=&#34;攻击方法&#34;&gt;攻击方法&lt;/h4&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:50082/posts/adversarial-attack/images/image-20210828163419457.png&#34; alt=&#34;IMG&#34;&gt;&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>【渔樵耕读】生成对抗网络 GAN</title>
+				<link>http://localhost:50082/zh/posts/gan-notes/</link>
+				<pubDate>Sun, 29 Aug 2021 09:08:35 +0800</pubDate>
+				<guid>http://localhost:50082/zh/posts/gan-notes/</guid>
+				<description>&lt;h3 id=&#34;generator-生成式模型&#34;&gt;generator 生成式模型&lt;/h3&gt;&#xA;&lt;h4 id=&#34;生成式模型基本结构&#34;&gt;生成式模型基本结构&lt;/h4&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;与传统的输入 x 输出 y 的判别式模型对比，生成式模型还会有一个随机生成的 z 作为输入，这个 z 从某种分布中随机生成，network 同时根据 x 与 z 生成 y&lt;/li&gt;&#xA;&lt;li&gt;&lt;img src=&#34;http://localhost:50082/posts/gan-notes/images/image-20210828085135671.png&#34; alt=&#34;&#34;&gt;&lt;/li&gt;&#xA;&lt;li&gt;每一次 输入 x，都会生成一次 z，这个 z 的分布必须够简单，即需要知道 z 的表达式。例如 z 属于高斯分布、平均分布等&lt;/li&gt;&#xA;&lt;li&gt;这样同样的x，输出的 y 也不相同，y 也需要属于某种分布&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 id=&#34;为何需要生成式模型&#34;&gt;为何需要生成式模型&lt;/h4&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;对于视频预测问题，训练集是从视频中提取的某些帧，模型输出入下一帧的画面。&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

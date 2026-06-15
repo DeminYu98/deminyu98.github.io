@@ -1,1 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>强化学习 on Demin Yu</title><link>https://deminyu98.github.io/zh/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</link><description>Recent content in 强化学习 on Demin Yu</description><generator>Hugo</generator><language>zh-CN</language><copyright>© Demin Yu</copyright><lastBuildDate>Sat, 04 Sep 2021 15:09:30 +0800</lastBuildDate><atom:link href="https://deminyu98.github.io/zh/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml"/><item><title>【渔樵耕读】强化学习 Reinforcement Learning</title><link>https://deminyu98.github.io/zh/posts/reinforcement-learning/</link><pubDate>Sat, 04 Sep 2021 15:09:30 +0800</pubDate><guid>https://deminyu98.github.io/zh/posts/reinforcement-learning/</guid><description>&lt;p&gt;先前无论 self-supervised learning 还是 autoencoder，本质上还是通过机器识别 label，本质上还是属于 supervised learning 的范式。&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>强化学习 on Demin Yu</title>
+		<link>http://localhost:50082/zh/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</link>
+		<description>Recent content in 强化学习 on Demin Yu</description>
+		<generator>Hugo</generator>
+		<language>zh-CN</language>
+		
+		
+		
+			<copyright>© Demin Yu</copyright>
+		
+		
+			<lastBuildDate>Sat, 04 Sep 2021 15:09:30 +0800</lastBuildDate>
+		
+			<atom:link href="http://localhost:50082/zh/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>【渔樵耕读】强化学习 Reinforcement Learning</title>
+				<link>http://localhost:50082/zh/posts/reinforcement-learning/</link>
+				<pubDate>Sat, 04 Sep 2021 15:09:30 +0800</pubDate>
+				<guid>http://localhost:50082/zh/posts/reinforcement-learning/</guid>
+				<description>&lt;p&gt;先前无论 self-supervised learning 还是 autoencoder，本质上还是通过机器识别 label，本质上还是属于 supervised learning 的范式。&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

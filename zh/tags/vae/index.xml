@@ -1,3 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VAE on Demin Yu</title><link>https://deminyu98.github.io/zh/tags/vae/</link><description>Recent content in VAE on Demin Yu</description><generator>Hugo</generator><language>zh-CN</language><copyright>© Demin Yu</copyright><lastBuildDate>Sat, 30 Apr 2022 13:50:20 +0800</lastBuildDate><atom:link href="https://deminyu98.github.io/zh/tags/vae/index.xml" rel="self" type="application/rss+xml"/><item><title>【渔樵耕读】深入理解VAE</title><link>https://deminyu98.github.io/zh/posts/vae/</link><pubDate>Sat, 30 Apr 2022 13:50:20 +0800</pubDate><guid>https://deminyu98.github.io/zh/posts/vae/</guid><description>&lt;h3 id="自编码器auto-encoder"&gt;自编码器Auto Encoder&lt;/h3&gt;
-&lt;h4 id="自编码器通用架构"&gt;自编码器通用架构&lt;/h4&gt;
-&lt;p&gt;自编码器概念最初被提出是基于对数据降维的目的，我们希望能够从原始特征$x$中，通过筛选、组合、变换等方式获得包含原始丰富信息的低维特征表示$e(x)$，通常$|e(x)|\ll|x|$，这种学习方式也称为表征学习&lt;code&gt;Represent Learning&lt;/code&gt;。通俗的去思考，我们没有办法像监督学习那样对不同特征提前设定低维表征，这就需要一种自监督方法去发现原始特征之间的关系。表征学习的思路有很多种，这里我们沿着一类基于&lt;code&gt;Encoder-Decoder&lt;/code&gt;架构的降维方法展开。这种架构利用编码器将原始特征降维获得&lt;strong&gt;低维编码&lt;/strong&gt;，然后再利用解码器将低维编码&lt;strong&gt;重构&lt;/strong&gt;。这相当于构造了一个自监督学习任务，学习目标是希望重构的结果与原始输入尽可能相同。这里的低维编码我们可以称为&lt;strong&gt;信息瓶颈&lt;/strong&gt;，原始特征的重要信息可以经过信息瓶颈被重构。&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>VAE on Demin Yu</title>
+		<link>http://localhost:50082/zh/tags/vae/</link>
+		<description>Recent content in VAE on Demin Yu</description>
+		<generator>Hugo</generator>
+		<language>zh-CN</language>
+		
+		
+		
+			<copyright>© Demin Yu</copyright>
+		
+		
+			<lastBuildDate>Sat, 30 Apr 2022 13:50:20 +0800</lastBuildDate>
+		
+			<atom:link href="http://localhost:50082/zh/tags/vae/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>【渔樵耕读】深入理解VAE</title>
+				<link>http://localhost:50082/zh/posts/vae/</link>
+				<pubDate>Sat, 30 Apr 2022 13:50:20 +0800</pubDate>
+				<guid>http://localhost:50082/zh/posts/vae/</guid>
+				<description>&lt;h3 id=&#34;自编码器auto-encoder&#34;&gt;自编码器Auto Encoder&lt;/h3&gt;&#xA;&lt;h4 id=&#34;自编码器通用架构&#34;&gt;自编码器通用架构&lt;/h4&gt;&#xA;&lt;p&gt;自编码器概念最初被提出是基于对数据降维的目的，我们希望能够从原始特征$x$中，通过筛选、组合、变换等方式获得包含原始丰富信息的低维特征表示$e(x)$，通常$|e(x)|\ll|x|$，这种学习方式也称为表征学习&lt;code&gt;Represent Learning&lt;/code&gt;。通俗的去思考，我们没有办法像监督学习那样对不同特征提前设定低维表征，这就需要一种自监督方法去发现原始特征之间的关系。表征学习的思路有很多种，这里我们沿着一类基于&lt;code&gt;Encoder-Decoder&lt;/code&gt;架构的降维方法展开。这种架构利用编码器将原始特征降维获得&lt;strong&gt;低维编码&lt;/strong&gt;，然后再利用解码器将低维编码&lt;strong&gt;重构&lt;/strong&gt;。这相当于构造了一个自监督学习任务，学习目标是希望重构的结果与原始输入尽可能相同。这里的低维编码我们可以称为&lt;strong&gt;信息瓶颈&lt;/strong&gt;，原始特征的重要信息可以经过信息瓶颈被重构。&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

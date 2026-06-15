@@ -1,3 +1,130 @@
-<!doctype html><html lang=en-US><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Paper Notes: MAE | Demin Yu</title><meta name=description content="Demin Yu's academic homepage and posts."><link rel=canonical href=https://deminyu98.github.io/posts/mae/><link rel=alternate hreflang=en href=https://deminyu98.github.io/posts/mae/><link rel=alternate hreflang=zh href=https://deminyu98.github.io/zh/posts/mae/><link rel=icon href=/images/profile-small.jpg><link rel=stylesheet href="/css/style.css?v=20260614-blogs"></head><body><div class=page-shell><header class=site-header><a class=site-title href=/>Home</a><nav class=site-nav aria-label="Main navigation"><a href=/zh/posts/>Blogs</a></nav></header><main id=content><article class=single-post><div id=toptitle class=titlebar><h1>Paper Notes: MAE</h1><div class=language-switch aria-label="Language switcher"><a class=active href=/posts/mae/ title=English aria-current=page>EN
-</a><a href=/zh/posts/mae/ title=中文>中</a></div></div><p class=post-meta>Posted at Nov 13, 2021</p><div class=post-content><div class=image-placeholder>Image pending: <code>s09302711132021.png</code></div><h3 id=masked-autoencoders-are-scalable-vision-learners><a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/2111.06377.pdf">Masked Autoencoders Are Scalable Vision Learners</a></h3><p>The main contribution of this paper is an <code>asymmetric</code> encoder-decoder method for image representation learning based on masked patches. Given an input image, the model divides it into patches and randomly masks a certain proportion of them. The encoder learns latent features from the visible patches, and the decoder reconstructs the complete image from those latent features. After training, the model achieves strong accuracy and excellent scalability for downstream tasks. This kind of self-supervised image learning can greatly reduce the dependence on labeled image data.</p><h3 id=introduction>Introduction</h3><h4 id=why-masked-autoencoding>Why Masked Autoencoding</h4><p>Modern deep learning models increasingly require large-scale labeled data. In NLP, self-supervised pre-training has been used to reduce this dependence on labeled data. Representative pre-trained models such as GPT and BERT follow a simple idea: mask part of the data and let the model learn to predict the masked content. In fact, this broad idea of masked autoencoding had been studied in vision even before it became prominent in NLP, but it had long lagged behind NLP in practical results.</p><h4 id=why-masked-autoencoding-in-cv-lags-behind-nlp>Why Masked Autoencoding in CV Lags behind NLP</h4><p>The paper focuses on one question: what is the essential difference between masked autoencoding for images and for language?</p><ol><li>The main backbone in computer vision, convolutional networks, is not easy to apply to images with irregular masked patches. This architectural gap can be effectively addressed by Vision Transformer (ViT).</li><li>Images and text have different information densities. Text is created by humans and contains high-level semantic information and dense information. Masking only a small portion of a sentence can already lead to a complex prediction task, because a few missing words may carry rich information and require the model to understand complex language patterns. Images, as natural information carriers, contain spatial redundancy. Predicting a missing patch can often be done with only limited information from nearby patches. The solution is to use a high masking ratio for images, such as randomly masking 75% of the patches. Large-scale masking reduces information redundancy and forces the model to understand images more efficiently.</li><li>The decoder that reconstructs the original signal from latent representations differs greatly between image and text reconstruction. In image tasks, the decoder reconstructs pixels, which contain relatively little semantic information. Predicting words contains richer semantic information. This leads to a difference: in NLP, the decoder can be relatively simple and still predict missing words, such as using an MLP decoder in BERT-like settings; in CV, the decoder must be carefully designed to predict masked pixels from the learned latent representations.</li></ol><p>Specifically, the paper proposes a simple, efficient, and scalable masked autoencoder for image representation learning. It uses an <code>asymmetric</code> encoder-decoder structure. The asymmetry means that the encoder only processes unmasked patches, while the decoder reconstructs the full image from the encoded features. The model randomly selects patches from the input image to mask and then reconstructs the masked patches. The masking ratio is very high, with the paper choosing 75%. The encoder learns latent features from the remaining 25% of patches, and a lightweight decoder reconstructs the complete image. Thanks to the high masking ratio, both the encoder and decoder can be computed efficiently, minimizing memory usage and enabling large-scale pre-training.</p><p>Using this kind of pre-training for large-scale representation learning can greatly improve model performance, even achieving better results than supervised learning in some settings. This is similar to the behavior of pre-training in NLP.</p><p>Autoencoder: an autoencoder is a classic method for learning feature representations. Its main process maps the input into a latent feature and then reconstructs the original input with a decoder. PCA and K-Means can both be viewed as autoencoder-like methods in essence. There are many types of autoencoders, and MAE belongs to the family of denoising autoencoders. In MAE, masked patches can be regarded as a form of noise.</p><h3 id=main-approach>Main Approach</h3><p>The goal of MAE is to reconstruct the complete signal from partial observations of the original signal.</p><h4 id=mask>Mask</h4><p>The input image is divided into multiple non-overlapping patches. A subset of patches is randomly selected according to a uniform distribution, and the remaining patches are masked, or directly removed. This high masking ratio largely removes image information redundancy, preventing the model from simply extrapolating masked patches from nearby visible patches. Uniform sampling also avoids clustering of visible pixels. The final result is a highly sparse masked image.</p><h4 id=encoder>Encoder</h4><p>The authors directly adopt the encoder structure from ViT: linear projection, positional encoding, and a series of Transformer blocks. The difference is that the encoder only operates on the remaining visible patches. Masked patches are not used and can even be directly removed. This allows a very large encoder model to be trained with limited computation and memory.</p><h4 id=decoder>Decoder</h4><p>Note that in an autoencoder, the decoder is only used during pre-training to complete the image reconstruction task. In actual representation learning, only the encoder is used. In MAE, the decoder input contains two parts: (i) the encoded tokens of visible patches, and (ii) the tokens of masked patches. Each mask token is a shared learnable vector used to predict a masked patch. A positional embedding is added to each token to encode positional information.</p><h4 id=reconstruction-target>Reconstruction Target</h4><p>For each masked patch, MAE reconstructs the input image by predicting <code>pixel values</code>. Each element produced by the decoder is a vector of pixel values representing the corresponding patch. The final layer of the decoder is a linear layer whose dimension equals the number of pixel values in a patch. During training, the loss is the MSE between the original image and the reconstructed image in pixel space. This loss is computed only on masked patches. In addition, using normalized pixel values within each patch as the reconstruction target can further improve performance.</p><h4 id=implementation>Implementation</h4><p>For data processing, each image patch is converted into a token through linear projection and positional encoding. All tokens are randomly shuffled and sampled, and the remaining tokens are removed as masked tokens. The encoder processes the visible tokens. For the decoder, the encoded patches are restored to their original positions, and the missing patches are filled with mask tokens. All mask tokens correspond to target tokens to be predicted and are then sent into the decoder. The decoder predicts the image pixels for the corresponding patches. The MSE between the predicted pixels and the original image pixels is used as the loss.</p><p>The final trained encoder can be used as a base model for downstream tasks and can be fine-tuned.</p><h3 id=ques>QUES</h3><p>Does the encoder use mask tokens? In the paper, visible patches are selected by first shuffling all input patches, assuming there are $N$ patches in total, and then discarding the last $N \times \text{masking\_ratio}$ patches. Only the remaining patches are passed through the network. Another possible method is to add a mask token in the encoder to indicate which patches should be kept and which should be masked. Experiments show that this significantly worsens performance. The reason is that with mask encoding, the model sees incomplete inputs during training, but complete inputs during downstream tasks. This creates a large gap.</p></div><p class=back-link><a href=/posts/>Back to posts</a></p></article><script>window.MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js></script></main><footer class=site-footer><span>© Demin Yu</span>
-<span>Last updated: Jun 15, 2026</span></footer></div></body></html>
+<!doctype html>
+<html lang="en-US">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=50082&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paper Notes: MAE | Demin Yu</title>
+  <meta name="description" content="Demin Yu&#39;s academic homepage and posts.">
+  <link rel="canonical" href="http://localhost:50082/posts/mae/">
+  
+  
+  <link rel="alternate" hreflang="en" href="http://localhost:50082/posts/mae/">
+  
+  
+  
+  <link rel="alternate" hreflang="zh" href="http://localhost:50082/zh/posts/mae/">
+  
+  
+  <link rel="icon" href="/images/profile-small.jpg">
+  <link rel="stylesheet" href="/css/style.css?v=20260614-blogs">
+</head>
+
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+  <a class="site-title" href="/">Home</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="/zh/posts/">Blogs</a>
+  </nav>
+</header>
+
+      <main id="content">
+        
+
+
+
+<article class="single-post">
+  <div id="toptitle" class="titlebar">
+    <h1>Paper Notes: MAE</h1>
+    
+    
+
+<div class="language-switch" aria-label="Language switcher">
+  
+  
+  
+  <a class="active" href="/posts/mae/" title="English" aria-current="page">
+    EN
+  </a>
+  
+  
+  
+  
+  <a class="" href="/zh/posts/mae/" title="中文">
+    中
+  </a>
+  
+  
+</div>
+
+
+    
+  </div>
+  <p class="post-meta">
+    Posted at Nov 13, 2021
+    
+  </p>
+  
+  <div class="post-content">
+    <div class="image-placeholder">Image pending: <code>s09302711132021.png</code></div>
+<h3 id="masked-autoencoders-are-scalable-vision-learners"><a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/2111.06377.pdf">Masked Autoencoders Are Scalable Vision Learners</a></h3>
+<p>The main contribution of this paper is an <code>asymmetric</code> encoder-decoder method for image representation learning based on masked patches. Given an input image, the model divides it into patches and randomly masks a certain proportion of them. The encoder learns latent features from the visible patches, and the decoder reconstructs the complete image from those latent features. After training, the model achieves strong accuracy and excellent scalability for downstream tasks. This kind of self-supervised image learning can greatly reduce the dependence on labeled image data.</p>
+<h3 id="introduction">Introduction</h3>
+<h4 id="why-masked-autoencoding">Why Masked Autoencoding</h4>
+<p>Modern deep learning models increasingly require large-scale labeled data. In NLP, self-supervised pre-training has been used to reduce this dependence on labeled data. Representative pre-trained models such as GPT and BERT follow a simple idea: mask part of the data and let the model learn to predict the masked content. In fact, this broad idea of masked autoencoding had been studied in vision even before it became prominent in NLP, but it had long lagged behind NLP in practical results.</p>
+<h4 id="why-masked-autoencoding-in-cv-lags-behind-nlp">Why Masked Autoencoding in CV Lags behind NLP</h4>
+<p>The paper focuses on one question: what is the essential difference between masked autoencoding for images and for language?</p>
+<ol>
+<li>The main backbone in computer vision, convolutional networks, is not easy to apply to images with irregular masked patches. This architectural gap can be effectively addressed by Vision Transformer (ViT).</li>
+<li>Images and text have different information densities. Text is created by humans and contains high-level semantic information and dense information. Masking only a small portion of a sentence can already lead to a complex prediction task, because a few missing words may carry rich information and require the model to understand complex language patterns. Images, as natural information carriers, contain spatial redundancy. Predicting a missing patch can often be done with only limited information from nearby patches. The solution is to use a high masking ratio for images, such as randomly masking 75% of the patches. Large-scale masking reduces information redundancy and forces the model to understand images more efficiently.</li>
+<li>The decoder that reconstructs the original signal from latent representations differs greatly between image and text reconstruction. In image tasks, the decoder reconstructs pixels, which contain relatively little semantic information. Predicting words contains richer semantic information. This leads to a difference: in NLP, the decoder can be relatively simple and still predict missing words, such as using an MLP decoder in BERT-like settings; in CV, the decoder must be carefully designed to predict masked pixels from the learned latent representations.</li>
+</ol>
+<p>Specifically, the paper proposes a simple, efficient, and scalable masked autoencoder for image representation learning. It uses an <code>asymmetric</code> encoder-decoder structure. The asymmetry means that the encoder only processes unmasked patches, while the decoder reconstructs the full image from the encoded features. The model randomly selects patches from the input image to mask and then reconstructs the masked patches. The masking ratio is very high, with the paper choosing 75%. The encoder learns latent features from the remaining 25% of patches, and a lightweight decoder reconstructs the complete image. Thanks to the high masking ratio, both the encoder and decoder can be computed efficiently, minimizing memory usage and enabling large-scale pre-training.</p>
+<p>Using this kind of pre-training for large-scale representation learning can greatly improve model performance, even achieving better results than supervised learning in some settings. This is similar to the behavior of pre-training in NLP.</p>
+<p>Autoencoder: an autoencoder is a classic method for learning feature representations. Its main process maps the input into a latent feature and then reconstructs the original input with a decoder. PCA and K-Means can both be viewed as autoencoder-like methods in essence. There are many types of autoencoders, and MAE belongs to the family of denoising autoencoders. In MAE, masked patches can be regarded as a form of noise.</p>
+<h3 id="main-approach">Main Approach</h3>
+<p>The goal of MAE is to reconstruct the complete signal from partial observations of the original signal.</p>
+<h4 id="mask">Mask</h4>
+<p>The input image is divided into multiple non-overlapping patches. A subset of patches is randomly selected according to a uniform distribution, and the remaining patches are masked, or directly removed. This high masking ratio largely removes image information redundancy, preventing the model from simply extrapolating masked patches from nearby visible patches. Uniform sampling also avoids clustering of visible pixels. The final result is a highly sparse masked image.</p>
+<h4 id="encoder">Encoder</h4>
+<p>The authors directly adopt the encoder structure from ViT: linear projection, positional encoding, and a series of Transformer blocks. The difference is that the encoder only operates on the remaining visible patches. Masked patches are not used and can even be directly removed. This allows a very large encoder model to be trained with limited computation and memory.</p>
+<h4 id="decoder">Decoder</h4>
+<p>Note that in an autoencoder, the decoder is only used during pre-training to complete the image reconstruction task. In actual representation learning, only the encoder is used. In MAE, the decoder input contains two parts: (i) the encoded tokens of visible patches, and (ii) the tokens of masked patches. Each mask token is a shared learnable vector used to predict a masked patch. A positional embedding is added to each token to encode positional information.</p>
+<h4 id="reconstruction-target">Reconstruction Target</h4>
+<p>For each masked patch, MAE reconstructs the input image by predicting <code>pixel values</code>. Each element produced by the decoder is a vector of pixel values representing the corresponding patch. The final layer of the decoder is a linear layer whose dimension equals the number of pixel values in a patch. During training, the loss is the MSE between the original image and the reconstructed image in pixel space. This loss is computed only on masked patches. In addition, using normalized pixel values within each patch as the reconstruction target can further improve performance.</p>
+<h4 id="implementation">Implementation</h4>
+<p>For data processing, each image patch is converted into a token through linear projection and positional encoding. All tokens are randomly shuffled and sampled, and the remaining tokens are removed as masked tokens. The encoder processes the visible tokens. For the decoder, the encoded patches are restored to their original positions, and the missing patches are filled with mask tokens. All mask tokens correspond to target tokens to be predicted and are then sent into the decoder. The decoder predicts the image pixels for the corresponding patches. The MSE between the predicted pixels and the original image pixels is used as the loss.</p>
+<p>The final trained encoder can be used as a base model for downstream tasks and can be fine-tuned.</p>
+<h3 id="ques">QUES</h3>
+<p>Does the encoder use mask tokens? In the paper, visible patches are selected by first shuffling all input patches, assuming there are $N$ patches in total, and then discarding the last $N \times \text{masking\_ratio}$ patches. Only the remaining patches are passed through the network. Another possible method is to add a mask token in the encoder to indicate which patches should be kept and which should be masked. Experiments show that this significantly worsens performance. The reason is that with mask encoding, the model sees incomplete inputs during training, but complete inputs during downstream tasks. This creates a large gap.</p>
+
+  </div>
+  <p class="back-link"><a href="/posts/">Back to posts</a></p>
+</article>
+
+
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+
+
+      </main>
+      <footer class="site-footer">
+  <span>© Demin Yu</span>
+  <span>Last updated: Jun 15, 2026</span>
+</footer>
+
+    </div>
+  </body>
+</html>
